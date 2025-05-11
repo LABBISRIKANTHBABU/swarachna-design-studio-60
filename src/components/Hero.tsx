@@ -1,13 +1,10 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from './TiltedCard';
-
 const Hero: React.FC = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
+  return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-swarachna-lightbg/90 via-swarachna-lightbg/95 to-swarachna-lightbg"></div>
       </div>
@@ -25,23 +22,19 @@ const Hero: React.FC = () => {
                 Your partner for innovative design and high-quality printing services. Transform your ideas into stunning visual experiences.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button 
-                  className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]"
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
+                <Button className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]" onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({
+                    behavior: 'smooth'
+                  });
+                }
+              }}>
                   Get a Free Quote
                   <ArrowRight size={18} />
                 </Button>
                 <Link to="/gallery">
-                  <Button 
-                    variant="outline"
-                    className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all"
-                  >
+                  <Button variant="outline" className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all">
                     View Portfolio
                   </Button>
                 </Link>
@@ -50,38 +43,20 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
-            <TiltedCard
-              imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png"
-              altText="Swarachna Logo"
-              captionText="Swarachna Creative Solutions"
-              containerHeight="400px"
-              containerWidth="400px"
-              imageHeight="400px"
-              imageWidth="400px"
-              rotateAmplitude={10}
-              scaleOnHover={1.15}
-              showMobileWarning={false}
-              showTooltip={true}
-              displayOverlayContent={true}
-              overlayContent={
-                <div className="flex flex-col items-center justify-center p-4 bg-swarachna-burgundy/70 rounded-lg text-white w-3/4 h-3/4">
-                  <h3 className="text-xl font-playfair gold-text">Crafting Dreams</h3>
-                  <p className="text-sm text-center mt-2">Design that inspires</p>
-                </div>
-              }
-            />
+            <TiltedCard imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" altText="Swarachna Logo" captionText="Swarachna Creative Solutions" containerHeight="400px" containerWidth="400px" imageHeight="400px" imageWidth="400px" rotateAmplitude={10} scaleOnHover={1.15} showMobileWarning={false} showTooltip={true} displayOverlayContent={true} overlayContent={<div className="flex flex-col items-center justify-center p-4 rounded-lg text-white w-3/4 h-3/4 bg-[#000a0e]/0">
+                  <h3 className="text-xl font-playfair gold-text"></h3>
+                  <p className="text-sm text-center mt-2"></p>
+                </div>} />
           </div>
         </div>
       </div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
         <a href="#about" className="text-swarachna-burgundy">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v14M5 12l7 7 7-7"/>
+            <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
         </a>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
