@@ -64,11 +64,14 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				swarachna: {
-					gold: '#D4AF37',
-					burgundy: '#800020',
-					cream: '#FFF8E1',
-					darkbg: '#1A0A0D',
-					lightbg: '#FDF6E3'
+					paige: '#F5EFE6',
+					brown: '#6D4C3D',
+					lightBrown: '#A47551',
+					purple: '#9B87F5',
+					darkPurple: '#7E69AB',
+					lightPurple: '#E5DEFF',
+					darkbg: '#221F26',
+					lightbg: '#F5EFE6'
 				}
 			},
 			borderRadius: {
@@ -120,7 +123,8 @@ export default {
 				'gold-shimmer': 'gold-shimmer 3s ease infinite'
 			},
 			backgroundImage: {
-				'gold-gradient': 'linear-gradient(45deg, #D4AF37, #FFF8E1, #D4AF37)',
+				'gold-gradient': 'linear-gradient(45deg, #A47551, #F5EFE6, #A47551)',
+				'purple-gradient': 'linear-gradient(45deg, #9B87F5, #E5DEFF, #7E69AB)',
 			},
 			fontFamily: {
 				'poppins': ['Poppins', 'sans-serif'],
