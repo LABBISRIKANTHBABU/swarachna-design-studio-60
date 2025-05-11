@@ -68,7 +68,10 @@ export default {
 					burgundy: '#800020',
 					cream: '#FFF8E1',
 					darkbg: '#1A0A0D',
-					lightbg: '#FDF6E3'
+					lightbg: '#F5F0EB',
+					purple: '#A080C0',
+					paige: '#F5F0EB',
+					brown: '#8B4513'
 				}
 			},
 			borderRadius: {
@@ -121,6 +124,8 @@ export default {
 			},
 			backgroundImage: {
 				'gold-gradient': 'linear-gradient(45deg, #D4AF37, #FFF8E1, #D4AF37)',
+				'purple-gradient': 'linear-gradient(45deg, #A080C0, #F5F0EB, #A080C0)',
+				'paige-brown-gradient': 'linear-gradient(135deg, #F5F0EB, #8B4513 70%, #F5F0EB)'
 			},
 			fontFamily: {
 				'poppins': ['Poppins', 'sans-serif'],

@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Image, Eye } from 'lucide-react';
+import Waves from '@/components/Waves';
 
 const Index: React.FC = () => {
   return (
@@ -18,8 +19,21 @@ const Index: React.FC = () => {
       <About />
       
       {/* Gallery Preview Section */}
-      <section className="py-16 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-white/80 relative overflow-hidden">
+        <Waves
+          lineColor="rgba(160, 128, 192, 0.1)"
+          backgroundColor="rgba(255, 255, 255, 0.5)"
+          waveSpeedX={0.015}
+          waveSpeedY={0.008}
+          waveAmpX={30}
+          waveAmpY={15}
+          friction={0.92}
+          tension={0.008}
+          maxCursorMove={100}
+          xGap={15}
+          yGap={40}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
               <span className="gold-text">Our Gallery</span>
@@ -81,17 +95,26 @@ const Index: React.FC = () => {
             </Link>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-0 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
       </section>
       
       <Services />
       
       {/* Design Upload CTA Section */}
       <section className="py-16 bg-swarachna-cream/50 relative overflow-hidden">
-        <div className="container mx-auto px-4">
+        <Waves
+          lineColor="rgba(128, 0, 32, 0.1)"
+          backgroundColor="rgba(255, 248, 225, 0.3)"
+          waveSpeedX={0.01}
+          waveSpeedY={0.005}
+          waveAmpX={20}
+          waveAmpY={10}
+          friction={0.93}
+          tension={0.007}
+          maxCursorMove={80}
+          xGap={20}
+          yGap={50}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">
@@ -123,10 +146,6 @@ const Index: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
       </section>
       
       <Contact />
