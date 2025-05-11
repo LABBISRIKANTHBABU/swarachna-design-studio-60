@@ -10,10 +10,7 @@ const Hero: React.FC = () => {
   // State for velocity value - can be adjusted as needed
   const [velocity] = useState(40);
 
-  return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-swarachna-paige/90 via-swarachna-paige/95 to-swarachna-paige"></div>
-      </div>
+  return <section id="home" className="relative min-h-screen flex items-center soft-gradient purple-glow brown-glow pt-20 overflow-hidden">
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2 animate-fade-in-right">

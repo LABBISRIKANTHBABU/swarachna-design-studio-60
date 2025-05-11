@@ -18,14 +18,14 @@ const Index: React.FC = () => {
       <About />
       
       {/* Gallery Preview Section */}
-      <section className="py-16 bg-white relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-b from-white via-swarachna-paige/40 to-white relative overflow-hidden purple-glow">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
               <span className="gold-text">Our Gallery</span>
             </h2>
-            <div className="w-24 h-1 bg-swarachna-burgundy mx-auto mt-4 mb-6"></div>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <div className="w-24 h-1 bg-swarachna-purple/50 mx-auto mt-4 mb-6"></div>
+            <p className="text-swarachna-brown max-w-3xl mx-auto">
               Explore our latest work and see how we bring ideas to life
             </p>
           </div>
@@ -72,7 +72,7 @@ const Index: React.FC = () => {
           <div className="text-center">
             <Link to="/gallery">
               <Button 
-                className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px] mx-auto"
+                className="bg-swarachna-purple hover:bg-swarachna-darkPurple text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px] mx-auto"
               >
                 <Eye size={18} />
                 View Full Gallery
@@ -81,28 +81,24 @@ const Index: React.FC = () => {
             </Link>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-0 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
       </section>
       
       <Services />
       
       {/* Design Upload CTA Section */}
-      <section className="py-16 bg-swarachna-cream/50 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-b from-swarachna-lightPurple/20 via-swarachna-paige/30 to-white relative overflow-hidden brown-glow">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">
                 <span className="gold-text">Have Your Own Design?</span>
               </h2>
-              <p className="text-gray-700 mb-6 text-lg">
+              <p className="text-swarachna-brown mb-6 text-lg">
                 Upload your own design and we'll bring it to life. Whether you have a sketch, a digital file, or just an idea, our team will work with you to create the perfect print.
               </p>
               <Link to="/upload-design">
                 <Button 
-                  className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]"
+                  className="bg-swarachna-purple hover:bg-swarachna-darkPurple text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]"
                 >
                   <Image size={18} />
                   Upload Your Design
@@ -118,15 +114,11 @@ const Index: React.FC = () => {
                   alt="Custom Design"
                   className="w-full h-full object-contain z-10 drop-shadow-xl"
                 />
-                <div className="absolute inset-0 bg-gold-gradient rounded-full opacity-20 animate-pulse"></div>
+                <div className="absolute inset-0 bg-purple-gradient rounded-full opacity-20 animate-pulse"></div>
               </div>
             </div>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
       </section>
       
       <Contact />

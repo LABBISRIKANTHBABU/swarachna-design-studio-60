@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? "py-2 bg-swarachna-lightbg/90 backdrop-blur-md shadow-md" : "py-4 bg-transparent"
+        scrolled ? "py-2 bg-white/90 backdrop-blur-md shadow-md" : "py-4 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -37,7 +37,7 @@ const Navbar = () => {
             alt="Swarachna Logo" 
             className="h-10 w-auto mr-2"
           />
-          <span className={`text-xl font-bold ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} font-playfair`}>
+          <span className={`text-xl font-bold text-swarachna-purple font-playfair`}>
             Swarachna
           </span>
         </Link>
@@ -53,16 +53,16 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={toggleMenu}>
           {isMenuOpen ? (
-            <X size={24} className="text-swarachna-burgundy" />
+            <X size={24} className="text-swarachna-purple" />
           ) : (
-            <Menu size={24} className="text-swarachna-burgundy" />
+            <Menu size={24} className="text-swarachna-purple" />
           )}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg p-4 border-t border-swarachna-gold/10 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg p-4 border-t border-swarachna-purple/10 animate-fade-in">
           <div className="flex flex-col space-y-4">
             <MobileNavLink href="#home" onClick={() => setIsMenuOpen(false)}>Home</MobileNavLink>
             <MobileNavLink href="#about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
@@ -79,10 +79,10 @@ const NavLink = ({ href, children, scrolled }: { href: string; children: React.R
   <a
     href={href}
     className={`text-sm font-medium relative transition-all duration-300
-      ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
-      hover:text-swarachna-gold
+      ${scrolled ? 'text-swarachna-brown' : 'text-swarachna-purple'} 
+      hover:text-swarachna-darkPurple
       after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-      after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
+      after:bottom-0 after:left-0 after:bg-swarachna-purple after:origin-bottom-right 
       after:transition-transform after:duration-300 hover:after:scale-x-100 
       hover:after:origin-bottom-left`}
   >
@@ -94,7 +94,7 @@ const MobileNavLink = ({ href, onClick, children }: { href: string; onClick: () 
   <a
     href={href}
     onClick={onClick}
-    className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+    className="text-swarachna-brown text-lg font-medium py-2 border-b border-swarachna-purple/10 hover:text-swarachna-purple transition-colors duration-300"
   >
     {children}
   </a>
