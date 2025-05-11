@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TiltedCard from './TiltedCard';
 
 const Hero: React.FC = () => {
   return (
@@ -49,14 +50,26 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
-            <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]">
-              <img
-                src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png"
-                alt="Swarachna Logo"
-                className="absolute inset-0 w-full h-full object-contain z-10"
-              />
-              <div className="absolute inset-[-10%] bg-gold-gradient rounded-full opacity-20 animate-pulse"></div>
-            </div>
+            <TiltedCard
+              imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png"
+              altText="Swarachna Logo"
+              captionText="Swarachna Creative Solutions"
+              containerHeight="400px"
+              containerWidth="400px"
+              imageHeight="400px"
+              imageWidth="400px"
+              rotateAmplitude={10}
+              scaleOnHover={1.15}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={true}
+              overlayContent={
+                <div className="flex flex-col items-center justify-center p-4 bg-swarachna-burgundy/70 rounded-lg text-white w-3/4 h-3/4">
+                  <h3 className="text-xl font-playfair gold-text">Crafting Dreams</h3>
+                  <p className="text-sm text-center mt-2">Design that inspires</p>
+                </div>
+              }
+            />
           </div>
         </div>
       </div>
