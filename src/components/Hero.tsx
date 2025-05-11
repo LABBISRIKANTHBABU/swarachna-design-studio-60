@@ -10,7 +10,10 @@ const Hero: React.FC = () => {
   // State for velocity value - can be adjusted as needed
   const [velocity] = useState(40);
 
-  return <section id="home" className="relative min-h-screen flex items-center soft-gradient purple-glow brown-glow pt-20 overflow-hidden">
+  return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-swarachna-lightbg/90 via-swarachna-lightbg/95 to-swarachna-lightbg"></div>
+      </div>
       <div className="container mx-auto px-4 z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2 animate-fade-in-right">
@@ -29,11 +32,11 @@ const Hero: React.FC = () => {
                 />
               </div>
               
-              <p className="text-swarachna-brown text-lg max-w-lg mb-8">
+              <p className="text-gray-700 text-lg max-w-lg mb-8">
                 Your partner for innovative design and high-quality printing services. Transform your ideas into stunning visual experiences.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button className="bg-swarachna-purple hover:bg-swarachna-darkPurple text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]" onClick={() => {
+                <Button className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]" onClick={() => {
                 const contactSection = document.getElementById('contact');
                 if (contactSection) {
                   contactSection.scrollIntoView({
@@ -45,7 +48,7 @@ const Hero: React.FC = () => {
                   <ArrowRight size={18} />
                 </Button>
                 <Link to="/gallery">
-                  <Button variant="outline" className="bg-transparent border-2 border-swarachna-brown text-swarachna-purple py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-paige/50 transition-all">
+                  <Button variant="outline" className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all">
                     View Portfolio
                   </Button>
                 </Link>
@@ -78,7 +81,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" className="text-swarachna-purple">
+        <a href="#about" className="text-swarachna-burgundy">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
