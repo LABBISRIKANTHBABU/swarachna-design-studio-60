@@ -1,5 +1,8 @@
 
 import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Eye } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {
   return (
@@ -25,6 +28,7 @@ const Services: React.FC = () => {
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             }
+            serviceId="logo-design"
           />
           <ServiceCard
             title="Marketing Materials"
@@ -37,6 +41,7 @@ const Services: React.FC = () => {
                 <path d="M12.5 9h2.5"></path>
               </svg>
             }
+            serviceId="marketing-materials"
           />
           <ServiceCard
             title="Packaging & Labels"
@@ -49,6 +54,7 @@ const Services: React.FC = () => {
                 <path d="M12 22V12"></path>
               </svg>
             }
+            serviceId="packaging-labels"
           />
           <ServiceCard
             title="Apparel Printing"
@@ -58,6 +64,7 @@ const Services: React.FC = () => {
                 <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
               </svg>
             }
+            serviceId="apparel-printing"
           />
           <ServiceCard
             title="Event & Display"
@@ -69,6 +76,7 @@ const Services: React.FC = () => {
                 <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
               </svg>
             }
+            serviceId="event-display"
           />
           <ServiceCard
             title="Corporate Stationery"
@@ -80,6 +88,7 @@ const Services: React.FC = () => {
                 <path d="M3 15h18"></path>
               </svg>
             }
+            serviceId="corporate-stationery"
           />
         </div>
       </div>
@@ -91,13 +100,22 @@ const Services: React.FC = () => {
   );
 };
 
-const ServiceCard = ({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) => (
+const ServiceCard = ({ title, description, icon, serviceId }: { title: string; description: string; icon: React.ReactNode; serviceId: string }) => (
   <div className="service-card group">
     <div className="p-4 mb-4 bg-swarachna-gold/10 rounded-full w-16 h-16 flex items-center justify-center text-swarachna-burgundy group-hover:bg-swarachna-gold/20 transition-all">
       {icon}
     </div>
     <h3 className="text-xl font-bold text-swarachna-burgundy mb-3 font-playfair">{title}</h3>
-    <p className="text-gray-600">{description}</p>
+    <p className="text-gray-600 mb-4">{description}</p>
+    <Link to={`/service/${serviceId}`}>
+      <Button 
+        variant="outline"
+        className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-lg text-sm font-medium hover:bg-swarachna-gold/10 transition-all flex items-center gap-2"
+      >
+        <Eye size={16} />
+        Explore
+      </Button>
+    </Link>
   </div>
 );
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   return (
@@ -25,16 +26,24 @@ const Hero: React.FC = () => {
               <div className="flex flex-wrap gap-4">
                 <Button 
                   className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]"
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 >
                   Get a Free Quote
                   <ArrowRight size={18} />
                 </Button>
-                <Button 
-                  variant="outline"
-                  className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all"
-                >
-                  View Portfolio
-                </Button>
+                <Link to="/gallery">
+                  <Button 
+                    variant="outline"
+                    className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all"
+                  >
+                    View Portfolio
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
