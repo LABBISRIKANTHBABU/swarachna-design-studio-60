@@ -109,17 +109,13 @@ export default function TiltedCard({
     >
       {showMobileWarning && (
         <div 
+          className="hidden sm:hidden"
           style={{
             position: "absolute",
             top: "1rem",
             textAlign: "center",
             fontSize: "0.875rem",
-            display: "none",
-            "@media (max-width: 640px)": {
-              display: "block"
-            }
           }}
-          className="hidden sm:hidden"
         >
           This effect is not optimized for mobile. Check on desktop.
         </div>
@@ -176,6 +172,7 @@ export default function TiltedCard({
 
       {showTooltip && (
         <motion.figcaption
+          className="hidden sm:block"
           style={{
             pointerEvents: "none",
             position: "absolute",
@@ -191,11 +188,7 @@ export default function TiltedCard({
             x,
             y,
             rotate: rotateFigcaption,
-            "@media (max-width: 640px)": {
-              display: "none"
-            }
           }}
-          className="hidden sm:block"
         >
           {captionText}
         </motion.figcaption>
