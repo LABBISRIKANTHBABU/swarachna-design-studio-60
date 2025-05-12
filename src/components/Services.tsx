@@ -3,13 +3,6 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Eye } from 'lucide-react';
 import { Link } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const Services: React.FC = () => {
   return (
@@ -36,7 +29,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="logo-design"
-            image="/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png"
           />
           <ServiceCard
             title="Marketing Materials"
@@ -50,7 +42,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="marketing-materials"
-            image="/lovable-uploads/9f2f057e-15ec-4222-8be1-add25a8718c9.png"
           />
           <ServiceCard
             title="Packaging & Labels"
@@ -64,7 +55,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="packaging-labels"
-            image="/lovable-uploads/4df76d8c-5502-4770-a79e-7e7f058ed978.png"
           />
           <ServiceCard
             title="Apparel Printing"
@@ -75,7 +65,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="apparel-printing"
-            image="/lovable-uploads/c0c37fce-5a5d-4137-84e5-e3e55c6862b2.png"
           />
           <ServiceCard
             title="Event & Display"
@@ -88,7 +77,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="event-display"
-            image="/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png"
           />
           <ServiceCard
             title="Corporate Stationery"
@@ -101,7 +89,6 @@ const Services: React.FC = () => {
               </svg>
             }
             serviceId="corporate-stationery"
-            image="/lovable-uploads/90bbad9e-0e7d-413a-b18e-9e404d65bec6.png"
           />
         </div>
       </div>
@@ -113,31 +100,20 @@ const Services: React.FC = () => {
   );
 };
 
-const ServiceCard = ({ title, description, icon, serviceId, image }: { title: string; description: string; icon: React.ReactNode; serviceId: string; image: string }) => (
-  <div className="service-card group bg-white/80 p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-    <div className="flex items-center gap-4 mb-4">
-      <div className="p-3 bg-swarachna-gold/10 rounded-full w-12 h-12 flex items-center justify-center text-swarachna-burgundy group-hover:bg-swarachna-gold/20 transition-all">
-        {icon}
-      </div>
-      <h3 className="text-xl font-bold text-swarachna-burgundy font-playfair">{title}</h3>
+const ServiceCard = ({ title, description, icon, serviceId }: { title: string; description: string; icon: React.ReactNode; serviceId: string }) => (
+  <div className="service-card group">
+    <div className="p-4 mb-4 bg-swarachna-gold/10 rounded-full w-16 h-16 flex items-center justify-center text-swarachna-burgundy group-hover:bg-swarachna-gold/20 transition-all">
+      {icon}
     </div>
-    
-    <div className="mb-4 overflow-hidden rounded-md">
-      <img 
-        src={image}
-        alt={title}
-        className="w-full h-44 object-cover transform hover:scale-105 transition-transform duration-500"
-      />
-    </div>
-    
+    <h3 className="text-xl font-bold text-swarachna-burgundy mb-3 font-playfair">{title}</h3>
     <p className="text-gray-600 mb-4">{description}</p>
     <Link to={`/service/${serviceId}`}>
       <Button 
         variant="outline"
-        className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-lg text-sm font-medium hover:bg-swarachna-gold/10 transition-all flex items-center gap-2 w-full justify-center"
+        className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-lg text-sm font-medium hover:bg-swarachna-gold/10 transition-all flex items-center gap-2"
       >
         <Eye size={16} />
-        Explore Service
+        Explore
       </Button>
     </Link>
   </div>

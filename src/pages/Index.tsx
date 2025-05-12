@@ -31,8 +31,8 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png" 
-                  alt="Gallery preview - Art Print"
+                  src="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+                  alt="Gallery preview 1"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
               </div>
@@ -40,8 +40,8 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/90bbad9e-0e7d-413a-b18e-9e404d65bec6.png" 
-                  alt="Gallery preview - Notebook"
+                  src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+                  alt="Gallery preview 2"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
               </div>
@@ -49,8 +49,8 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white hidden sm:block">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/42a360b5-3dc5-4143-ae2b-9c781838ac99.png" 
-                  alt="Gallery preview - Tote bag"
+                  src="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+                  alt="Gallery preview 3"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
               </div>
@@ -58,8 +58,8 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white hidden lg:block">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/c0c37fce-5a5d-4137-84e5-e3e55c6862b2.png" 
-                  alt="Gallery preview - T-shirt"
+                  src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+                  alt="Gallery preview 4"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
               </div>
@@ -107,8 +107,8 @@ const Index: React.FC = () => {
             <div className="w-full md:w-1/2 flex justify-center">
               <div className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px]">
                 <img
-                  src="/lovable-uploads/e57e5172-b6db-4f46-acdb-ad0d8dcace7c.png"
-                  alt="Custom Design - Cushion Cover"
+                  src="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png"
+                  alt="Custom Design"
                   className="w-full h-full object-contain z-10 drop-shadow-xl"
                 />
                 <div className="absolute inset-0 bg-gold-gradient rounded-full opacity-20 animate-pulse"></div>

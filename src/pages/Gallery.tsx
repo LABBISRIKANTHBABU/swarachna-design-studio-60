@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
@@ -91,84 +92,75 @@ const Gallery: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <GalleryItem 
               id="logo-design-1"
-              image="/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png" 
-              title="Custom Mug Design" 
+              image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+              title="Logo Design" 
               category="logo"
               serviceId="logo-design"
               addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Custom Mug Design has been added to your cart" })}
+              showToast={() => toast({ title: "Added to cart", description: "Logo Design has been added to your cart" })}
             />
             <GalleryItem 
               id="brand-identity-1"
-              image="/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png" 
-              title="Art Print Design" 
+              image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              title="Brand Identity" 
+              category="logo"
+              serviceId="logo-design"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Brand Identity has been added to your cart" })}
+            />
+            <GalleryItem 
+              id="flyer-design-1"
+              image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+              title="Flyer Design" 
               category="marketing"
               serviceId="marketing-materials"
               addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Art Print Design has been added to your cart" })}
+              showToast={() => toast({ title: "Added to cart", description: "Flyer Design has been added to your cart" })}
             />
             <GalleryItem 
-              id="notebook-design-1"
-              image="/lovable-uploads/90bbad9e-0e7d-413a-b18e-9e404d65bec6.png" 
-              title="Notebook Design" 
-              category="stationery"
-              serviceId="corporate-stationery"
+              id="poster-design-1"
+              image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              title="Poster Design" 
+              category="marketing"
+              serviceId="marketing-materials"
               addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Notebook Design has been added to your cart" })}
+              showToast={() => toast({ title: "Added to cart", description: "Poster Design has been added to your cart" })}
             />
             <GalleryItem 
               id="packaging-design-1"
-              image="/lovable-uploads/4df76d8c-5502-4770-a79e-7e7f058ed978.png" 
-              title="Shopping Bag Design" 
+              image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+              title="Packaging Design" 
               category="packaging"
               serviceId="packaging-labels"
               addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Shopping Bag Design has been added to your cart" })}
-            />
-            <GalleryItem 
-              id="wall-art-1"
-              image="/lovable-uploads/9f2f057e-15ec-4222-8be1-add25a8718c9.png" 
-              title="Wall Art Print" 
-              category="marketing"
-              serviceId="marketing-materials"
-              addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Wall Art Print has been added to your cart" })}
-            />
-            <GalleryItem 
-              id="sticker-design-1"
-              image="/lovable-uploads/fceef116-bf60-4186-ae4e-2fa2c9a1de6a.png" 
-              title="Laptop Sticker Design" 
-              category="marketing"
-              serviceId="marketing-materials"
-              addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Laptop Sticker Design has been added to your cart" })}
-            />
-            <GalleryItem 
-              id="tote-bag-1"
-              image="/lovable-uploads/42a360b5-3dc5-4143-ae2b-9c781838ac99.png" 
-              title="Tote Bag Print" 
-              category="apparel"
-              serviceId="apparel-printing"
-              addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Tote Bag Print has been added to your cart" })}
-            />
-            <GalleryItem 
-              id="cushion-cover-1"
-              image="/lovable-uploads/e57e5172-b6db-4f46-acdb-ad0d8dcace7c.png" 
-              title="Cushion Cover Design" 
-              category="apparel"
-              serviceId="apparel-printing"
-              addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "Cushion Cover Design has been added to your cart" })}
+              showToast={() => toast({ title: "Added to cart", description: "Packaging Design has been added to your cart" })}
             />
             <GalleryItem 
               id="tshirt-print-1"
-              image="/lovable-uploads/c0c37fce-5a5d-4137-84e5-e3e55c6862b2.png" 
-              title="T-Shirt Design" 
+              image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              title="T-Shirt Print" 
               category="apparel"
               serviceId="apparel-printing"
               addToCart={addItem}
-              showToast={() => toast({ title: "Added to cart", description: "T-Shirt Design has been added to your cart" })}
+              showToast={() => toast({ title: "Added to cart", description: "T-Shirt Print has been added to your cart" })}
+            />
+            <GalleryItem 
+              id="event-banner-1"
+              image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
+              title="Event Banner" 
+              category="events"
+              serviceId="event-display"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Event Banner has been added to your cart" })}
+            />
+            <GalleryItem 
+              id="business-card-1"
+              image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              title="Business Card" 
+              category="stationery"
+              serviceId="corporate-stationery"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Business Card has been added to your cart" })}
             />
           </div>
         </div>
