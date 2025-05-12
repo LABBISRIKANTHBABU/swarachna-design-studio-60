@@ -5,28 +5,12 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from './TiltedCard';
 import ScrollVelocity from './ScrollVelocity';
-import Waves from './Waves';
 
 const Hero: React.FC = () => {
   // State for velocity value - can be adjusted as needed
   const [velocity] = useState(40);
 
   return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
-      {/* Waves Background */}
-      <Waves
-        lineColor="rgba(160, 128, 192, 0.3)"
-        backgroundColor="rgba(245, 240, 235, 0.05)"
-        waveSpeedX={0.02}
-        waveSpeedY={0.01}
-        waveAmpX={40}
-        waveAmpY={20}
-        friction={0.9}
-        tension={0.01}
-        maxCursorMove={120}
-        xGap={12}
-        yGap={36}
-      />
-      
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-swarachna-lightbg/30 via-swarachna-lightbg/50 to-swarachna-lightbg/90"></div>
       </div>

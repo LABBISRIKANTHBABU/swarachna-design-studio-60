@@ -1,14 +1,10 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 
 const Gallery: React.FC = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <section className="pt-28 pb-20 bg-swarachna-cream/30 relative overflow-hidden mandala-bg">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -100,7 +96,6 @@ const Gallery: React.FC = () => {
         <div className="absolute top-20 left-10 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
       </section>
-      <Footer />
     </div>
   );
 };
