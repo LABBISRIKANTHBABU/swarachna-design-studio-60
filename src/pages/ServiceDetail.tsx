@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Upload } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const serviceData = {
   'logo-design': {
@@ -120,12 +119,6 @@ const ServiceDetail: React.FC = () => {
     return <div className="min-h-screen pt-20 flex items-center justify-center">Service not found</div>;
   }
   
-  // Create a detailed message for WhatsApp
-  const whatsAppMessage = `Hello, I'm interested in your "${service.title}" service. I would like to discuss this design further.`;
-  
-  // Business owner's WhatsApp number (replace with the actual number)
-  const ownerWhatsAppNumber = "+919876543210"; // Example number, replace with real one
-  
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -165,11 +158,6 @@ const ServiceDetail: React.FC = () => {
                     Upload Your Design
                   </Button>
                 </Link>
-                <WhatsAppButton 
-                  phoneNumber={ownerWhatsAppNumber}
-                  message={whatsAppMessage}
-                  className="py-6 px-8 rounded-lg text-lg font-medium transition-all"
-                />
                 <Button 
                   variant="outline"
                   className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy py-6 px-8 rounded-lg text-lg font-medium hover:bg-swarachna-gold/10 transition-all"
