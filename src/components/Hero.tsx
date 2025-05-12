@@ -1,16 +1,20 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from './TiltedCard';
-import ScrollVelocity from './ScrollVelocity';
+import RotatingText from './RotatingText';
+import Waves from './Waves';
 
 const Hero: React.FC = () => {
-  // State for velocity value - can be adjusted as needed
-  const [velocity] = useState(40);
-
   return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
+      <Waves 
+        lineColor="rgba(160, 128, 192, 0.3)"
+        backgroundColor="rgba(245, 240, 235, 0.05)"
+        waveSpeedX={0.015}
+        waveSpeedY={0.01}
+      />
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-swarachna-lightbg/30 via-swarachna-lightbg/50 to-swarachna-lightbg/90"></div>
       </div>
@@ -22,13 +26,24 @@ const Hero: React.FC = () => {
                 <span className="gold-text">Swarachna</span>
               </h1>
               
-              {/* Scrolling text animation */}
-              <div className="mb-4 overflow-hidden">
-                <ScrollVelocity
-                  texts={['Creative Design', 'Printing Solutions']} 
-                  velocity={velocity} 
-                  className="custom-scroll-text"
-                  numCopies={4}
+              {/* Rotating text animation */}
+              <div className="mb-4 flex h-12 md:h-16 lg:h-20 items-center">
+                <RotatingText
+                  texts={[
+                    'Creative Design',
+                    'Printing Solutions',
+                    'Professional Services',
+                    'Quality Products'
+                  ]}
+                  mainClassName="text-2xl md:text-3xl lg:text-4xl text-swarachna-burgundy font-playfair overflow-hidden"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={3000}
                 />
               </div>
               
