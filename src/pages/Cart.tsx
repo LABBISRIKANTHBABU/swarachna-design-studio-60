@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,14 @@ import { useCart } from "@/contexts/CartContext";
 import { Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
+import CheckoutForm from '@/components/CheckoutForm';
 
 const Cart: React.FC = () => {
   const { items, removeItem, updateQuantity, clearCart, total } = useCart();
   const { isAuthenticated } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   
   const handleCheckout = () => {
     if (!isAuthenticated) {
@@ -25,11 +27,12 @@ const Cart: React.FC = () => {
       return;
     }
     
-    toast({
-      title: "Order placed",
-      description: "Your order has been successfully placed!",
-    });
+    setShowCheckoutForm(true);
+  };
+  
+  const handlePaymentSuccess = () => {
     clearCart();
+    setShowCheckoutForm(false);
     navigate('/');
   };
   
@@ -115,24 +118,34 @@ const Cart: React.FC = () => {
                     </div>
                     <div className="flex justify-between font-medium text-lg pt-2 border-t">
                       <span>Total</span>
-                      <span>{total > 0 ? `$${total.toFixed(2)}` : 'Request Quote'}</span>
+                      <span>{total > 0 ? `₹${total.toFixed(2)}` : 'Request Quote'}</span>
                     </div>
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
-                  <Button 
-                    className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
-                    onClick={handleCheckout}
-                  >
-                    Checkout <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={clearCart}
-                  >
-                    Clear Cart
-                  </Button>
+                  {showCheckoutForm ? (
+                    <CheckoutForm 
+                      items={items} 
+                      total={total > 0 ? total : 0} 
+                      onSuccess={handlePaymentSuccess} 
+                    />
+                  ) : (
+                    <>
+                      <Button 
+                        className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        onClick={handleCheckout}
+                      >
+                        Checkout <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full"
+                        onClick={clearCart}
+                      >
+                        Clear Cart
+                      </Button>
+                    </>
+                  )}
                 </CardFooter>
               </Card>
             </div>
