@@ -1,9 +1,12 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
+
+// Business owner's WhatsApp number
+const ownerWhatsAppNumber = "+919876543210"; // Example number, replace with real one
 
 const Gallery: React.FC = () => {
   return (
@@ -106,6 +109,9 @@ const Gallery: React.FC = () => {
 };
 
 const GalleryItem = ({ image, title, category, serviceId }: { image: string; title: string; category: string; serviceId: string }) => {
+  // Create a detailed message for WhatsApp with the selected design
+  const whatsAppMessage = `Hello, I'm interested in your "${title}" design (Category: ${category}). I would like to discuss this further.`;
+  
   return (
     <div className="gallery-item" data-category={category}>
       <div className="overflow-hidden rounded-lg shadow-lg bg-white group relative">
@@ -120,14 +126,21 @@ const GalleryItem = ({ image, title, category, serviceId }: { image: string; tit
           <h3 className="text-lg font-semibold text-swarachna-burgundy">{title}</h3>
           <div className="flex justify-between items-center mt-2">
             <span className="text-sm text-gray-500 capitalize">{category}</span>
-            <Link to={`/service/${serviceId}`}>
-              <Button 
-                variant="link" 
-                className="text-swarachna-gold hover:text-swarachna-burgundy p-0 h-auto"
-              >
-                Select This Design
-              </Button>
-            </Link>
+            <div className="flex gap-2">
+              <Link to={`/service/${serviceId}`}>
+                <Button 
+                  variant="link" 
+                  className="text-swarachna-gold hover:text-swarachna-burgundy p-0 h-auto"
+                >
+                  View Details
+                </Button>
+              </Link>
+              <WhatsAppButton
+                phoneNumber={ownerWhatsAppNumber}
+                message={whatsAppMessage}
+                className="text-xs py-1 px-2 h-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
