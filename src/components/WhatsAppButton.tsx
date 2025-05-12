@@ -1,20 +1,20 @@
 
 import React from 'react';
-import { WhatsApp } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 interface WhatsAppButtonProps {
   phoneNumber: string;
   message?: string;
   className?: string;
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "whatsapp";
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ 
   phoneNumber, 
   message = "Hello, I'm interested in your design services!", 
   className, 
-  variant = "default" 
+  variant = "whatsapp" 
 }) => {
   const handleWhatsAppClick = () => {
     // Format phone number - remove any non-digit characters
@@ -30,10 +30,10 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   return (
     <Button 
       onClick={handleWhatsAppClick}
-      className={`bg-green-500 hover:bg-green-600 text-white flex items-center gap-2 ${className}`}
+      className={className}
       variant={variant}
     >
-      <WhatsApp size={18} />
+      <MessageSquare size={18} className="text-white" />
       <span>Contact on WhatsApp</span>
     </Button>
   );
