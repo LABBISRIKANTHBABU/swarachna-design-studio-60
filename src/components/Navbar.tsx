@@ -1,11 +1,17 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, ShoppingCart, LogIn, LogOut, User } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isAuthenticated, logout, user } = useAuth();
+  const { itemCount } = useCart();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +28,12 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsMenuOpen(false);
+    navigate('/');
   };
 
   return (
@@ -43,21 +55,75 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
-          <NavLink href="#home" scrolled={scrolled}>Home</NavLink>
-          <NavLink href="#about" scrolled={scrolled}>About</NavLink>
-          <NavLink href="#services" scrolled={scrolled}>Services</NavLink>
-          <NavLink href="#contact" scrolled={scrolled}>Contact</NavLink>
+        <div className="hidden md:flex items-center space-x-8">
+          <div className="flex space-x-8">
+            <NavLink href="#home" scrolled={scrolled}>Home</NavLink>
+            <NavLink href="#about" scrolled={scrolled}>About</NavLink>
+            <NavLink href="#services" scrolled={scrolled}>Services</NavLink>
+            <NavLink href="#contact" scrolled={scrolled}>Contact</NavLink>
+            <Link to="/gallery" className={`text-sm font-medium relative transition-all duration-300
+              ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
+              hover:text-swarachna-gold`}>
+              Gallery
+            </Link>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <Link to="/cart" className="relative">
+              <Button variant="ghost" size="icon">
+                <ShoppingCart className="h-5 w-5" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-swarachna-burgundy text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
+            
+            {isAuthenticated ? (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleLogout}
+                title="Logout"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
+            ) : (
+              <Link to="/login">
+                <Button 
+                  variant="ghost" 
+                  size="icon"
+                  title="Login"
+                >
+                  <LogIn className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={toggleMenu}>
-          {isMenuOpen ? (
-            <X size={24} className="text-swarachna-burgundy" />
-          ) : (
-            <Menu size={24} className="text-swarachna-burgundy" />
-          )}
-        </button>
+        <div className="flex items-center md:hidden space-x-2">
+          <Link to="/cart" className="relative mr-2">
+            <Button variant="ghost" size="icon">
+              <ShoppingCart className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-swarachna-burgundy text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </Button>
+          </Link>
+          
+          <button className="md:hidden" onClick={toggleMenu}>
+            {isMenuOpen ? (
+              <X size={24} className="text-swarachna-burgundy" />
+            ) : (
+              <Menu size={24} className="text-swarachna-burgundy" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -68,6 +134,38 @@ const Navbar = () => {
             <MobileNavLink href="#about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
             <MobileNavLink href="#services" onClick={() => setIsMenuOpen(false)}>Services</MobileNavLink>
             <MobileNavLink href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</MobileNavLink>
+            <Link 
+              to="/gallery" 
+              className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Gallery
+            </Link>
+            
+            {isAuthenticated ? (
+              <>
+                <div className="py-2 text-swarachna-burgundy flex items-center">
+                  <User className="h-5 w-5 mr-2" />
+                  <span>{user?.name || user?.email}</span>
+                </div>
+                <button
+                  className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300 flex items-center"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-5 w-5 mr-2" />
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link 
+                to="/login" 
+                className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300 flex items-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <LogIn className="h-5 w-5 mr-2" />
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}

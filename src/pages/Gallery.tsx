@@ -1,8 +1,21 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
+import { ShoppingCart, Eye } from 'lucide-react';
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/components/ui/use-toast";
 
 const Gallery: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const { addItem } = useCart();
+  const { toast } = useToast();
+  
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    filterGallery(category);
+  };
+  
   return (
     <div className="min-h-screen">
       <section className="pt-28 pb-20 bg-swarachna-cream/30 relative overflow-hidden mandala-bg">
@@ -19,22 +32,58 @@ const Gallery: React.FC = () => {
           
           <div className="mb-12">
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Button className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" onClick={() => filterGallery('all')}>
+              <Button 
+                className={activeCategory === 'all' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('all')}
+              >
                 All Works
               </Button>
-              <Button variant="outline" className="border-swarachna-gold text-swarachna-burgundy" onClick={() => filterGallery('logo')}>
+              <Button 
+                className={activeCategory === 'logo' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('logo')}
+              >
                 Logo Design
               </Button>
-              <Button variant="outline" className="border-swarachna-gold text-swarachna-burgundy" onClick={() => filterGallery('marketing')}>
+              <Button 
+                className={activeCategory === 'marketing' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('marketing')}
+              >
                 Marketing
               </Button>
-              <Button variant="outline" className="border-swarachna-gold text-swarachna-burgundy" onClick={() => filterGallery('packaging')}>
+              <Button 
+                className={activeCategory === 'packaging' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('packaging')}
+              >
                 Packaging
               </Button>
-              <Button variant="outline" className="border-swarachna-gold text-swarachna-burgundy" onClick={() => filterGallery('apparel')}>
+              <Button 
+                className={activeCategory === 'apparel' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('apparel')}
+              >
                 Apparel
               </Button>
-              <Button variant="outline" className="border-swarachna-gold text-swarachna-burgundy" onClick={() => filterGallery('events')}>
+              <Button 
+                className={activeCategory === 'events' ? 
+                  "bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white" : 
+                  "bg-transparent border border-swarachna-gold text-swarachna-burgundy hover:bg-swarachna-gold/10"
+                } 
+                onClick={() => handleCategoryChange('events')}
+              >
                 Events
               </Button>
             </div>
@@ -42,52 +91,76 @@ const Gallery: React.FC = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <GalleryItem 
+              id="logo-design-1"
               image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
               title="Logo Design" 
               category="logo"
               serviceId="logo-design"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Logo Design has been added to your cart" })}
             />
             <GalleryItem 
+              id="brand-identity-1"
               image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
               title="Brand Identity" 
               category="logo"
               serviceId="logo-design"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Brand Identity has been added to your cart" })}
             />
             <GalleryItem 
+              id="flyer-design-1"
               image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
               title="Flyer Design" 
               category="marketing"
               serviceId="marketing-materials"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Flyer Design has been added to your cart" })}
             />
             <GalleryItem 
+              id="poster-design-1"
               image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
               title="Poster Design" 
               category="marketing"
               serviceId="marketing-materials"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Poster Design has been added to your cart" })}
             />
             <GalleryItem 
+              id="packaging-design-1"
               image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
               title="Packaging Design" 
               category="packaging"
               serviceId="packaging-labels"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Packaging Design has been added to your cart" })}
             />
             <GalleryItem 
+              id="tshirt-print-1"
               image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
               title="T-Shirt Print" 
               category="apparel"
               serviceId="apparel-printing"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "T-Shirt Print has been added to your cart" })}
             />
             <GalleryItem 
+              id="event-banner-1"
               image="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" 
               title="Event Banner" 
               category="events"
               serviceId="event-display"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Event Banner has been added to your cart" })}
             />
             <GalleryItem 
+              id="business-card-1"
               image="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
               title="Business Card" 
               category="stationery"
               serviceId="corporate-stationery"
+              addToCart={addItem}
+              showToast={() => toast({ title: "Added to cart", description: "Business Card has been added to your cart" })}
             />
           </div>
         </div>
@@ -100,10 +173,25 @@ const Gallery: React.FC = () => {
   );
 };
 
-const GalleryItem = ({ image, title, category, serviceId }: { image: string; title: string; category: string; serviceId: string }) => {
+interface GalleryItemProps {
+  id: string;
+  image: string;
+  title: string;
+  category: string;
+  serviceId: string;
+  addToCart: (item: {id: string; title: string; image: string; serviceId: string}) => void;
+  showToast: () => void;
+}
+
+const GalleryItem: React.FC<GalleryItemProps> = ({ id, image, title, category, serviceId, addToCart, showToast }) => {
+  const handleAddToCart = () => {
+    addToCart({ id, title, image, serviceId });
+    showToast();
+  };
+  
   return (
     <div className="gallery-item" data-category={category}>
-      <div className="overflow-hidden rounded-lg shadow-lg bg-white group relative">
+      <div className="overflow-hidden rounded-lg shadow-lg bg-white/80 backdrop-blur-sm group relative">
         <div className="aspect-square overflow-hidden">
           <img 
             src={image} 
@@ -115,14 +203,26 @@ const GalleryItem = ({ image, title, category, serviceId }: { image: string; tit
           <h3 className="text-lg font-semibold text-swarachna-burgundy">{title}</h3>
           <div className="flex justify-between items-center mt-2">
             <span className="text-sm text-gray-500 capitalize">{category}</span>
-            <Link to={`/service/${serviceId}`}>
+            <div className="flex space-x-2">
               <Button 
-                variant="link" 
-                className="text-swarachna-gold hover:text-swarachna-burgundy p-0 h-auto"
+                variant="ghost" 
+                size="sm"
+                className="text-swarachna-gold hover:text-swarachna-burgundy p-1 h-auto flex items-center"
+                onClick={handleAddToCart}
               >
-                Select This Design
+                <ShoppingCart className="h-4 w-4 mr-1" />
+                Add to Cart
               </Button>
-            </Link>
+              <Link to={`/service/${serviceId}`}>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className="text-swarachna-gold hover:text-swarachna-burgundy p-1 h-auto"
+                >
+                  <Eye className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
