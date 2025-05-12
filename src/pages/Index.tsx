@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -31,7 +30,7 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
+                  src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
                   alt="Gallery preview 1"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
@@ -40,7 +39,7 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
+                  src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
                   alt="Gallery preview 2"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
@@ -49,7 +48,7 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white hidden sm:block">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
+                  src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
                   alt="Gallery preview 3"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
@@ -58,7 +57,7 @@ const Index: React.FC = () => {
             <div className="overflow-hidden rounded-lg shadow-lg bg-white hidden lg:block">
               <div className="aspect-square overflow-hidden">
                 <img 
-                  src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
+                  src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
                   alt="Gallery preview 4"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
                 />
@@ -107,7 +106,7 @@ const Index: React.FC = () => {
             <div className="w-full md:w-1/2 flex justify-center">
               <div className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px]">
                 <img
-                  src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png"
+                  src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png"
                   alt="Custom Design"
                   className="w-full h-full object-contain z-10 drop-shadow-xl"
                 />

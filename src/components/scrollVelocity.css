@@ -20,10 +20,15 @@
 }
 
 .custom-scroll-text {
-  color: #a080c0;
+  color: #9b2242;
   font-family: "Playfair Display", serif;
   padding-right: 0.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #a78526, #9b2242);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: bold;
 }
 
 @media (min-width: 768px) {
@@ -31,4 +36,20 @@
     font-size: 5rem;
     line-height: 5rem;
   }
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(167, 133, 38, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(167, 133, 38, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(167, 133, 38, 0.6));
+  }
+}
+
+.gold-glow {
+  animation: glow 3s infinite;
 }
