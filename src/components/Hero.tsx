@@ -57,14 +57,26 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
-            {/* Updated logo image with larger size */}
-            <div className="relative">
-              <img 
-                src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
-                alt="Swarachna Logo" 
-                className="w-[450px] h-auto object-contain gold-glow"
-              />
-            </div>
+            <TiltedCard 
+              imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              altText="Swarachna Logo" 
+              captionText="Swarachna Creative Solutions" 
+              containerHeight="400px" 
+              containerWidth="400px" 
+              imageHeight="400px" 
+              imageWidth="400px" 
+              rotateAmplitude={10} 
+              scaleOnHover={1.15} 
+              showMobileWarning={false} 
+              showTooltip={true} 
+              displayOverlayContent={true} 
+              overlayContent={
+                <div className="flex flex-col items-center justify-center p-4 rounded-lg text-white w-3/4 h-3/4 bg-[#000a0e]/0">
+                  <h3 className="text-xl font-playfair gold-text"></h3>
+                  <p className="text-sm text-center mt-2"></p>
+                </div>
+              } 
+            />
           </div>
         </div>
       </div>
