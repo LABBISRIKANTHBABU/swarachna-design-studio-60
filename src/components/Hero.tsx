@@ -5,11 +5,10 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from './TiltedCard';
 import ScrollVelocity from './ScrollVelocity';
-import '../components/scrollVelocity.css';
 
 const Hero: React.FC = () => {
-  // Increased velocity for more dynamic scrolling effect
-  const [velocity] = useState(60);
+  // State for velocity value - can be adjusted as needed
+  const [velocity] = useState(40);
 
   return <section id="home" className="relative min-h-screen flex items-center mandala-bg pt-20 overflow-hidden">
       <div className="absolute inset-0">
@@ -23,26 +22,13 @@ const Hero: React.FC = () => {
                 <span className="gold-text">Swarachna</span>
               </h1>
               
-              {/* Enhanced Scrolling text animation with more texts and styling */}
-              <div className="mb-6 overflow-hidden">
+              {/* Scrolling text animation */}
+              <div className="mb-4 overflow-hidden">
                 <ScrollVelocity
-                  texts={[
-                    'Creative Design', 
-                    'Printing Solutions', 
-                    'Quality Service', 
-                    'Custom Designs'
-                  ]} 
+                  texts={['Creative Design', 'Printing Solutions']} 
                   velocity={velocity} 
                   className="custom-scroll-text"
-                  numCopies={6}
-                  parallaxStyle={{ 
-                    height: '80px',
-                    marginBottom: '1rem'
-                  }}
-                  scrollerStyle={{
-                    fontWeight: 'bold',
-                    letterSpacing: '0.05em'
-                  }}
+                  numCopies={4}
                 />
               </div>
               
@@ -71,12 +57,12 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
-            {/* Updated logo image with even larger size and animation */}
+            {/* Updated logo image with larger size */}
             <div className="relative">
               <img 
-                src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
+                src="/lovable-uploads/78d82d8f-55fb-4765-aa91-df0df8c6ffae.png" 
                 alt="Swarachna Logo" 
-                className="w-[500px] h-auto object-contain gold-glow hover:scale-105 transition-transform duration-500"
+                className="w-[450px] h-auto object-contain gold-glow"
               />
             </div>
           </div>

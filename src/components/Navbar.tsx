@@ -45,9 +45,9 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/5fe025e4-9504-4b7a-83d9-8a196fb7c6f4.png" 
+            src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
             alt="Swarachna Logo" 
-            className={`transition-all duration-300 ${scrolled ? 'h-12 w-auto' : 'h-16 w-auto'} mr-2`}
+            className="h-10 w-auto mr-2"
           />
           <span className={`text-xl font-bold ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} font-playfair`}>
             Swarachna
