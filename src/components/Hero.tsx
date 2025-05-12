@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
             <TiltedCard 
-              imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
+              imageSrc="/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png" 
               altText="Swarachna Logo" 
               captionText="Swarachna Creative Solutions" 
               containerHeight="400px" 

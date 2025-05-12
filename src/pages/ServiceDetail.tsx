@@ -11,9 +11,9 @@ const serviceData = {
     title: 'Logo & Brand Design',
     description: 'Create a memorable visual identity with our professional logo design and complete branding elements. We work closely with you to understand your brand values and target audience to create a logo that stands out and represents your business perfectly.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png",
+      "/lovable-uploads/e57e5172-b6db-4f46-acdb-ad0d8dcace7c.png",
+      "/lovable-uploads/42a360b5-3dc5-4143-ae2b-9c781838ac99.png",
     ],
     features: [
       'Unique and memorable logo design',
@@ -28,9 +28,9 @@ const serviceData = {
     title: 'Marketing Materials',
     description: 'Engage your audience with eye-catching posters, flyers, and social media graphics designed to drive results. Our marketing materials are designed to capture attention and convert viewers into customers.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png",
+      "/lovable-uploads/9f2f057e-15ec-4222-8be1-add25a8718c9.png",
+      "/lovable-uploads/fceef116-bf60-4186-ae4e-2fa2c9a1de6a.png",
     ],
     features: [
       'Poster and flyer design',
@@ -45,9 +45,9 @@ const serviceData = {
     title: 'Packaging & Labels',
     description: 'Stand out on the shelf with custom packaging solutions and product labels designed for impact. Our packaging designs are not only visually appealing but also functional and aligned with your brand identity.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/4df76d8c-5502-4770-a79e-7e7f058ed978.png",
+      "/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png",
+      "/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png",
     ],
     features: [
       'Custom box design',
@@ -62,9 +62,9 @@ const serviceData = {
     title: 'Apparel Printing',
     description: 'Custom printed t-shirts, hoodies, caps, and more for events, promotions, or personal use. We use high-quality printing techniques to ensure vibrant colors and long-lasting designs on all apparel items.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/c0c37fce-5a5d-4137-84e5-e3e55c6862b2.png",
+      "/lovable-uploads/42a360b5-3dc5-4143-ae2b-9c781838ac99.png",
+      "/lovable-uploads/e57e5172-b6db-4f46-acdb-ad0d8dcace7c.png",
     ],
     features: [
       'T-shirt and hoodie printing',
@@ -79,9 +79,9 @@ const serviceData = {
     title: 'Event & Display',
     description: 'Make an impact at events with professionally designed standees, banners, and display materials. Our event display materials are designed to draw attention and effectively communicate your message.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/e822bcbe-75d8-4924-a68d-9db1edaf8528.png",
+      "/lovable-uploads/9f2f057e-15ec-4222-8be1-add25a8718c9.png",
+      "/lovable-uploads/c0c37fce-5a5d-4137-84e5-e3e55c6862b2.png",
     ],
     features: [
       'Roll-up standees',
@@ -96,9 +96,9 @@ const serviceData = {
     title: 'Corporate Stationery',
     description: 'Create a professional impression with custom business cards, letterheads, and complete corporate stationery. Your stationery is often the first physical touch point with clients, and we ensure it makes a lasting impression.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/90bbad9e-0e7d-413a-b18e-9e404d65bec6.png",
+      "/lovable-uploads/6cc1baf6-c8ad-40a8-9607-f04ca6016daa.png",
+      "/lovable-uploads/42a360b5-3dc5-4143-ae2b-9c781838ac99.png",
     ],
     features: [
       'Business card design and printing',
