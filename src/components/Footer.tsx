@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-swarachna-burgundy text-white py-16 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           <div className="space-y-6">
             <div className="flex items-center">
               <img 
@@ -49,27 +49,13 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-playfair">Services</h4>
-            <ul className="space-y-3">
-              <FooterLink>Logo & Brand Design</FooterLink>
-              <FooterLink>Marketing Materials</FooterLink>
-              <FooterLink>Packaging & Labels</FooterLink>
-              <FooterLink>Apparel Printing</FooterLink>
-              <FooterLink>Event & Display</FooterLink>
-              <FooterLink>Corporate Stationery</FooterLink>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-playfair">Quick Links</h4>
-            <ul className="space-y-3">
-              <FooterLink href="#home">Home</FooterLink>
-              <FooterLink href="#about">About Us</FooterLink>
-              <FooterLink href="#services">Services</FooterLink>
-              <FooterLink href="#contact">Contact</FooterLink>
-              <FooterLink>Portfolio</FooterLink>
-              <FooterLink>Blog</FooterLink>
-            </ul>
+            <h4 className="text-lg font-bold text-white mb-6 font-playfair">About Our Services</h4>
+            <p className="text-swarachna-cream/80 text-sm mb-4">
+              We offer comprehensive design and printing services tailored to your unique needs. From brand identity creation to high-quality print production, our team delivers excellence with every project.
+            </p>
+            <p className="text-swarachna-cream/80 text-sm">
+              Our mission is to transform your creative vision into stunning visual experiences that captivate and inspire.
+            </p>
           </div>
           
           <div>
@@ -114,17 +100,6 @@ const SocialIcon = ({ children }: { children: React.ReactNode }) => (
   <a href="#" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-swarachna-gold hover:text-swarachna-burgundy transition-colors">
     {children}
   </a>
-);
-
-const FooterLink = ({ href = "#", children }: { href?: string; children: React.ReactNode }) => (
-  <li>
-    <a 
-      href={href} 
-      className="text-swarachna-cream/80 hover:text-swarachna-gold transition-colors"
-    >
-      {children}
-    </a>
-  </li>
 );
 
 const FooterBottomLink = ({ children }: { children: React.ReactNode }) => (

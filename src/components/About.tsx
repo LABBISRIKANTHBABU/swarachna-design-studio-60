@@ -1,5 +1,15 @@
+
 import React from 'react';
+import FlowingMenu from './FlowingMenu';
+
 const About: React.FC = () => {
+  const processItems = [
+    { link: '#', text: 'Consultation', image: 'https://picsum.photos/600/400?random=1' },
+    { link: '#', text: 'Design', image: 'https://picsum.photos/600/400?random=2' },
+    { link: '#', text: 'Refinement', image: 'https://picsum.photos/600/400?random=3' },
+    { link: '#', text: 'Production', image: 'https://picsum.photos/600/400?random=4' }
+  ];
+  
   return <section id="about" className="py-20 bg-white/50 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -27,16 +37,10 @@ const About: React.FC = () => {
             <p className="text-gray-700 mb-6">
               At Swarachna, we believe that great designs come from understanding our clients' vision, values, and goals. Our creative process is collaborative and transparent, ensuring that we deliver results that exceed expectations.
             </p>
-            <p className="text-gray-700">
-              Whether you need a complete brand identity, marketing materials, or custom merchandise, our team is equipped with the skills and expertise to bring your ideas to life with precision and creativity.
-            </p>
           </div>
 
-          <div className="w-full md:w-1/2 grid grid-cols-2 gap-6">
-            <ProcessStep number="01" title="Consultation" description="We start by understanding your needs and objectives." />
-            <ProcessStep number="02" title="Concept & Design" description="Our designers create concepts based on your requirements." />
-            <ProcessStep number="03" title="Refinement" description="We refine designs based on your feedback until perfect." />
-            <ProcessStep number="04" title="Production" description="Final designs are prepared for printing with quality checks." />
+          <div className="w-full md:w-1/2" style={{ height: '400px', position: 'relative' }}>
+            <FlowingMenu items={processItems} />
           </div>
         </div>
       </div>
@@ -46,6 +50,7 @@ const About: React.FC = () => {
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
     </section>;
 };
+
 const FeatureCard = ({
   number,
   title,
@@ -61,17 +66,5 @@ const FeatureCard = ({
     <h3 className="text-xl font-bold text-swarachna-burgundy mb-3 font-playfair">{title}</h3>
     <p className="text-gray-600">{description}</p>
   </div>;
-const ProcessStep = ({
-  number,
-  title,
-  description
-}: {
-  number: string;
-  title: string;
-  description: string;
-}) => <div className="bg-swarachna-cream/50 p-6 rounded-lg border-l-4 border-swarachna-gold hover:bg-swarachna-cream/80 transition-all duration-300">
-    <div className="text-sm font-bold text-swarachna-gold mb-1">STEP {number}</div>
-    <h4 className="text-lg font-semibold text-swarachna-burgundy mb-2">{title}</h4>
-    <p className="text-sm text-gray-600">{description}</p>
-  </div>;
+
 export default About;
