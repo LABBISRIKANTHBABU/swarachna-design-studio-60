@@ -1,16 +1,20 @@
 
 import * as React from "react"
-import { Toast, ToastActionElement, ToastProps } from "@/components/ui/toast"
+import { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
 
-type ToasterToast = Toast & {
+// Define the base toast properties first
+interface ToastBaseProps {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
 }
+
+// Now extend ToastProps with the base properties
+type ToasterToast = ToastProps & ToastBaseProps
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -134,9 +138,10 @@ function dispatch(action: Action) {
   })
 }
 
-type Toast = Omit<ToasterToast, "id">
+// Define the type for toast function parameter
+type ToastProps = Omit<ToasterToast, "id">
 
-function toast(props: Toast) {
+function toast(props: ToastProps) {
   const id = genId()
 
   const update = (props: ToasterToast) =>
