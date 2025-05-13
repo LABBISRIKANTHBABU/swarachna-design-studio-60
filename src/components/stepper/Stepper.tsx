@@ -1,4 +1,3 @@
-
 import React, { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { StepperContext } from "./StepperContext";
@@ -63,7 +62,7 @@ const Stepper = ({ steps, onComplete, onStepChange, validateStep }: StepperProps
   };
 
   const goNext = async () => {
-    // Validate current step before proceeding
+    // Ensure we validate the current step before proceeding
     if (validateStep) {
       try {
         const isValid = await validateStep(currentStep);
@@ -73,20 +72,21 @@ const Stepper = ({ steps, onComplete, onStepChange, validateStep }: StepperProps
             description: "Please complete the current step before proceeding.",
             variant: "destructive",
           });
-          return;
+          return; // Stop if validation fails
         }
       } catch (error) {
         console.error("Step validation error:", error);
-        return;
+        return; // Stop if validation throws an error
       }
     }
-    
+
+    // Move to the next step if validation passes
     const next = currentStep + 1;
     if (next < steps.length) {
-      setCurrentStep(next);
-      onStepChange?.(next);
+      setCurrentStep(next); // Update the current step
+      onStepChange?.(next); // Trigger the step change callback if provided
     } else {
-      onComplete?.();
+      onComplete?.(); // Trigger the completion callback if on the last step
     }
   };
 
@@ -121,22 +121,6 @@ const Stepper = ({ steps, onComplete, onStepChange, validateStep }: StepperProps
               {step}
             </Step>
           ))}
-        </div>
-
-        <div className="step-nav">
-          <button 
-            onClick={goBack} 
-            disabled={currentStep === 0}
-            className="px-4 py-2 bg-swarachna-burgundy/80 text-white rounded-lg disabled:opacity-50"
-          >
-            Back
-          </button>
-          <button 
-            onClick={goNext}
-            className="px-4 py-2 bg-swarachna-burgundy text-white rounded-lg"
-          >
-            {currentStep === steps.length - 1 ? "Finish" : "Next"}
-          </button>
         </div>
       </div>
     </StepperContext.Provider>
