@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingCart, User, LogIn, LogOut, ChevronDown } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
@@ -20,6 +19,7 @@ const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth();
   const { itemCount } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +44,22 @@ const Navbar = () => {
     navigate('/');
   };
 
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    
+    // If we're on the home page, scroll to the section
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } 
+    // Otherwise navigate to home page with the section hash
+    else {
+      navigate(`/#${sectionId}`);
+    }
+  };
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -65,42 +81,54 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           <div className="flex space-x-8">
-            <Link to="/#home" className={`text-sm font-medium relative transition-all duration-300
-              ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
-              hover:text-swarachna-gold
-              after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-              after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
-              after:transition-transform after:duration-300 hover:after:scale-x-100 
-              hover:after:origin-bottom-left`}>
+            <button 
+              onClick={() => scrollToSection('home')}
+              className={`text-sm font-medium relative transition-all duration-300
+                ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
+                hover:text-swarachna-gold
+                after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
+                after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
+                after:transition-transform after:duration-300 hover:after:scale-x-100 
+                hover:after:origin-bottom-left`}
+            >
               Home
-            </Link>
-            <Link to="/#about" className={`text-sm font-medium relative transition-all duration-300
-              ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
-              hover:text-swarachna-gold
-              after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-              after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
-              after:transition-transform after:duration-300 hover:after:scale-x-100 
-              hover:after:origin-bottom-left`}>
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className={`text-sm font-medium relative transition-all duration-300
+                ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
+                hover:text-swarachna-gold
+                after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
+                after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
+                after:transition-transform after:duration-300 hover:after:scale-x-100 
+                hover:after:origin-bottom-left`}
+            >
               About
-            </Link>
-            <Link to="/#services" className={`text-sm font-medium relative transition-all duration-300
-              ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
-              hover:text-swarachna-gold
-              after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-              after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
-              after:transition-transform after:duration-300 hover:after:scale-x-100 
-              hover:after:origin-bottom-left`}>
+            </button>
+            <button 
+              onClick={() => scrollToSection('services')}
+              className={`text-sm font-medium relative transition-all duration-300
+                ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
+                hover:text-swarachna-gold
+                after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
+                after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
+                after:transition-transform after:duration-300 hover:after:scale-x-100 
+                hover:after:origin-bottom-left`}
+            >
               Services
-            </Link>
-            <Link to="/#contact" className={`text-sm font-medium relative transition-all duration-300
-              ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
-              hover:text-swarachna-gold
-              after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-              after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
-              after:transition-transform after:duration-300 hover:after:scale-x-100 
-              hover:after:origin-bottom-left`}>
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className={`text-sm font-medium relative transition-all duration-300
+                ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
+                hover:text-swarachna-gold
+                after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
+                after:bottom-0 after:left-0 after:bg-swarachna-gold after:origin-bottom-right 
+                after:transition-transform after:duration-300 hover:after:scale-x-100 
+                hover:after:origin-bottom-left`}
+            >
               Contact
-            </Link>
+            </button>
             <Link to="/gallery" className={`text-sm font-medium relative transition-all duration-300
               ${scrolled ? 'text-swarachna-burgundy' : 'text-swarachna-burgundy'} 
               hover:text-swarachna-gold`}>
@@ -188,10 +216,30 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-lg p-4 border-t border-swarachna-gold/10 animate-fade-in">
           <div className="flex flex-col space-y-4">
-            <Link to="/" className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <Link to="/#about" className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300" onClick={() => setIsMenuOpen(false)}>About</Link>
-            <Link to="/#services" className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300" onClick={() => setIsMenuOpen(false)}>Services</Link>
-            <Link to="/#contact" className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('services')}
+              className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+            >
+              Services
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"
+            >
+              Contact
+            </button>
             <Link 
               to="/gallery" 
               className="text-swarachna-burgundy text-lg font-medium py-2 border-b border-swarachna-gold/10 hover:text-swarachna-gold transition-colors duration-300"

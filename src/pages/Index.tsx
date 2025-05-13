@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -6,8 +7,10 @@ import Contact from '@/components/Contact';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Image, Eye } from 'lucide-react';
+
 const Index: React.FC = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Hero />
       <About />
       
@@ -17,9 +20,9 @@ const Index: React.FC = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
               <span style={{
-              textShadow: '0 1px 1px rgba(0,0,0,0.05)',
-              WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)'
-            }} className="gold-text font-extrabold">Our Gallery</span>
+                textShadow: '0 1px 1px rgba(0,0,0,0.05)',
+                WebkitTextStroke: '1px rgba(184, 134, 11, 0.8)'
+              }} className="gold-text font-extrabold">Our Gallery</span>
             </h2>
             <div className="w-24 h-1 bg-swarachna-burgundy mx-auto mt-4 mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
@@ -51,7 +54,7 @@ const Index: React.FC = () => {
           </div>
           
           <div className="text-center">
-            <Link to="/gallery">
+            <Link to="/gallery" onClick={() => window.scrollTo(0, 0)}>
               <Button className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px] mx-auto">
                 <Eye size={18} />
                 View Full Gallery
@@ -71,14 +74,14 @@ const Index: React.FC = () => {
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">
                 <span style={{
-                textShadow: '0 1px 1px rgba(0,0,0,0.05)',
-                WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)'
-              }} className="gold-text font-extrabold">Have Your Own Design?</span>
+                  textShadow: '0 1px 1px rgba(0,0,0,0.05)',
+                  WebkitTextStroke: '1px rgba(184, 134, 11, 0.8)'
+                }} className="gold-text font-extrabold">Have Your Own Design?</span>
               </h2>
               <p className="text-gray-700 mb-6 text-lg">
                 Upload your own design and we'll bring it to life. Whether you have a sketch, a digital file, or just an idea, our team will work with you to create the perfect print.
               </p>
-              <Link to="/upload-design">
+              <Link to="/upload-design" onClick={() => window.scrollTo(0, 0)}>
                 <Button className="bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-6 px-8 rounded-lg text-lg font-medium flex items-center gap-2 transition-all transform hover:translate-y-[-2px]">
                   <Image size={18} />
                   Upload Your Design
@@ -98,6 +101,8 @@ const Index: React.FC = () => {
       </section>
       
       <Contact />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

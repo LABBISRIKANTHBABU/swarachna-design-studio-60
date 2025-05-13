@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Eye } from 'lucide-react';
@@ -10,6 +10,11 @@ const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const { addItem } = useCart();
   const { toast } = useToast();
+  
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
@@ -22,7 +27,7 @@ const Gallery: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
-              <span className="gold-text font-extrabold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)', WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)' }}>Our Gallery</span>
+              <span className="gold-text font-extrabold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)', WebkitTextStroke: '1px rgba(184, 134, 11, 0.8)' }}>Our Gallery</span>
             </h1>
             <div className="w-24 h-1 bg-swarachna-burgundy mx-auto mt-4 mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
@@ -213,7 +218,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ id, image, title, category, s
                 <ShoppingCart className="h-4 w-4 mr-1" />
                 Add to Cart
               </Button>
-              <Link to={`/service/${serviceId}`}>
+              <Link to={`/service/${serviceId}`} onClick={() => window.scrollTo(0, 0)}>
                 <Button 
                   variant="ghost" 
                   size="sm"

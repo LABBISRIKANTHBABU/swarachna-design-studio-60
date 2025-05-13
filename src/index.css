@@ -81,7 +81,17 @@
 
 @layer components {
   .gold-text {
-    @apply text-transparent bg-clip-text bg-gold-gradient animate-gold-shimmer bg-[length:200%_auto];
+    @apply text-transparent bg-clip-text font-extrabold;
+    background-image: linear-gradient(to right, #DAA520, #FCC201, #DAA520);
+    animation: goldShimmer 3s ease-in-out infinite;
+    background-size: 200% auto;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  @keyframes goldShimmer {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
   }
   
   .mandala-bg {
