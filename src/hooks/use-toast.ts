@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import { ToastActionElement, ToastProps } from "@/components/ui/toast"
+import type { ToastActionElement } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
@@ -11,10 +11,11 @@ interface ToastBaseProps {
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  variant?: "default" | "destructive"
+  className?: string
 }
-
-// Now extend ToastProps with the base properties
-type ToasterToast = ToastProps & ToastBaseProps
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -35,23 +36,23 @@ type ActionType = typeof actionTypes
 type Action =
   | {
       type: ActionType["ADD_TOAST"]
-      toast: ToasterToast
+      toast: ToastBaseProps
     }
   | {
       type: ActionType["UPDATE_TOAST"]
-      toast: Partial<ToasterToast>
+      toast: Partial<ToastBaseProps>
     }
   | {
       type: ActionType["DISMISS_TOAST"]
-      toastId?: ToasterToast["id"]
+      toastId?: ToastBaseProps["id"]
     }
   | {
       type: ActionType["REMOVE_TOAST"]
-      toastId?: ToasterToast["id"]
+      toastId?: ToastBaseProps["id"]
     }
 
 interface State {
-  toasts: ToasterToast[]
+  toasts: ToastBaseProps[]
 }
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
@@ -139,12 +140,12 @@ function dispatch(action: Action) {
 }
 
 // Define the type for toast function parameter
-type ToastProps = Omit<ToasterToast, "id">
+type ToastProps = Omit<ToastBaseProps, "id">
 
 function toast(props: ToastProps) {
   const id = genId()
 
-  const update = (props: ToasterToast) =>
+  const update = (props: ToastProps) =>
     dispatch({
       type: actionTypes.UPDATE_TOAST,
       toast: { ...props, id },

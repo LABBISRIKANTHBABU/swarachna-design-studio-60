@@ -2,6 +2,7 @@
 import React, { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { StepperContext } from "./StepperContext";
+import { toast } from "@/components/ui/use-toast";
 
 interface StepProps {
   children: ReactNode;
@@ -38,19 +39,48 @@ const Stepper = ({ steps, onComplete, onStepChange, validateStep }: StepperProps
 
   const goToStep = async (index: number) => {
     if (index === currentStep) return;
+    
+    // If moving forward, validate current step
     if (index > currentStep && validateStep) {
-      const isValid = await validateStep(currentStep);
-      if (!isValid) return;
+      try {
+        const isValid = await validateStep(currentStep);
+        if (!isValid) {
+          toast({
+            title: "Validation Failed",
+            description: "Please complete the current step before proceeding.",
+            variant: "destructive",
+          });
+          return;
+        }
+      } catch (error) {
+        console.error("Step validation error:", error);
+        return;
+      }
     }
+    
     setCurrentStep(index);
     onStepChange?.(index);
   };
 
   const goNext = async () => {
+    // Validate current step before proceeding
     if (validateStep) {
-      const isValid = await validateStep(currentStep);
-      if (!isValid) return;
+      try {
+        const isValid = await validateStep(currentStep);
+        if (!isValid) {
+          toast({
+            title: "Validation Failed",
+            description: "Please complete the current step before proceeding.",
+            variant: "destructive",
+          });
+          return;
+        }
+      } catch (error) {
+        console.error("Step validation error:", error);
+        return;
+      }
     }
+    
     const next = currentStep + 1;
     if (next < steps.length) {
       setCurrentStep(next);

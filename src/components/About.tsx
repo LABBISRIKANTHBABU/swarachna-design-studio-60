@@ -7,22 +7,22 @@ const About: React.FC = () => {
   const stepContent = [
     <div key="consultation" className="text-center px-4">
       <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Consultation</h3>
-      <img src="https://picsum.photos/600/400?random=1" alt="Consultation" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <img src="/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png" alt="Consultation" className="w-full h-32 object-cover rounded-lg mb-3" />
       <p className="text-gray-700">We start by understanding your vision, goals, and requirements through detailed consultations.</p>
     </div>,
     <div key="design" className="text-center px-4">
       <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Design</h3>
-      <img src="https://picsum.photos/600/400?random=2" alt="Design" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <img src="/lovable-uploads/03de423c-f553-4f04-98f4-28305b3392ef.png" alt="Design" className="w-full h-32 object-cover rounded-lg mb-3" />
       <p className="text-gray-700">Our creative team develops initial concepts and designs based on your needs and preferences.</p>
     </div>,
     <div key="refinement" className="text-center px-4">
       <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Refinement</h3>
-      <img src="https://picsum.photos/600/400?random=3" alt="Refinement" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <img src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" alt="Refinement" className="w-full h-32 object-cover rounded-lg mb-3" />
       <p className="text-gray-700">We refine the designs based on your feedback until we achieve the perfect result.</p>
     </div>,
     <div key="production" className="text-center px-4">
       <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Production</h3>
-      <img src="https://picsum.photos/600/400?random=4" alt="Production" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <img src="/lovable-uploads/b162c337-d7b6-4610-b841-e91c66358a60.png" alt="Production" className="w-full h-32 object-cover rounded-lg mb-3" />
       <p className="text-gray-700">Once approved, we move to production with meticulous attention to quality and detail.</p>
     </div>,
   ];
