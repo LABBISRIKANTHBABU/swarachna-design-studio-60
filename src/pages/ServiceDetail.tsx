@@ -11,9 +11,9 @@ const serviceData = {
     title: 'Logo & Brand Design',
     description: 'Create a memorable visual identity with our professional logo design and complete branding elements. We work closely with you to understand your brand values and target audience to create a logo that stands out and represents your business perfectly.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/b796bec5-9e83-4ca6-85a7-90fbec2b6fd3.png",
+      "/lovable-uploads/03de423c-f553-4f04-98f4-28305b3392ef.png",
+      "/lovable-uploads/b162c337-d7b6-4610-b841-e91c66358a60.png",
     ],
     features: [
       'Unique and memorable logo design',
@@ -28,9 +28,9 @@ const serviceData = {
     title: 'Marketing Materials',
     description: 'Engage your audience with eye-catching posters, flyers, and social media graphics designed to drive results. Our marketing materials are designed to capture attention and convert viewers into customers.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/07ba2fba-9c2c-43cb-b994-f268ed511b82.png",
+      "/lovable-uploads/009d3efb-78c6-4820-a440-2124fc23f847.png",
+      "/lovable-uploads/b796bec5-9e83-4ca6-85a7-90fbec2b6fd3.png",
     ],
     features: [
       'Poster and flyer design',
@@ -45,9 +45,9 @@ const serviceData = {
     title: 'Packaging & Labels',
     description: 'Stand out on the shelf with custom packaging solutions and product labels designed for impact. Our packaging designs are not only visually appealing but also functional and aligned with your brand identity.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/9536d388-8daf-4c73-8e77-46f0c411a5f4.png",
+      "/lovable-uploads/8e2a3ed1-cadd-4bf0-87e6-63c35866871b.png",
+      "/lovable-uploads/b796bec5-9e83-4ca6-85a7-90fbec2b6fd3.png",
     ],
     features: [
       'Custom box design',
@@ -62,9 +62,9 @@ const serviceData = {
     title: 'Apparel Printing',
     description: 'Custom printed t-shirts, hoodies, caps, and more for events, promotions, or personal use. We use high-quality printing techniques to ensure vibrant colors and long-lasting designs on all apparel items.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/cd54f1af-b065-43fa-8a3c-be71d282e7c5.png",
+      "/lovable-uploads/8e2a3ed1-cadd-4bf0-87e6-63c35866871b.png",
+      "/lovable-uploads/b162c337-d7b6-4610-b841-e91c66358a60.png",
     ],
     features: [
       'T-shirt and hoodie printing',
@@ -79,9 +79,9 @@ const serviceData = {
     title: 'Event & Display',
     description: 'Make an impact at events with professionally designed standees, banners, and display materials. Our event display materials are designed to draw attention and effectively communicate your message.',
     images: [
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
+      "/lovable-uploads/07ba2fba-9c2c-43cb-b994-f268ed511b82.png",
+      "/lovable-uploads/009d3efb-78c6-4820-a440-2124fc23f847.png",
+      "/lovable-uploads/8e2a3ed1-cadd-4bf0-87e6-63c35866871b.png",
     ],
     features: [
       'Roll-up standees',
@@ -96,9 +96,9 @@ const serviceData = {
     title: 'Corporate Stationery',
     description: 'Create a professional impression with custom business cards, letterheads, and complete corporate stationery. Your stationery is often the first physical touch point with clients, and we ensure it makes a lasting impression.',
     images: [
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
-      "/lovable-uploads/78609923-bf93-46f3-8741-7805bc6fe28b.png",
-      "/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png",
+      "/lovable-uploads/f3ce48ca-6d74-4d19-8d5d-0f0e76ab7078.png",
+      "/lovable-uploads/b796bec5-9e83-4ca6-85a7-90fbec2b6fd3.png",
+      "/lovable-uploads/8e2a3ed1-cadd-4bf0-87e6-63c35866871b.png",
     ],
     features: [
       'Business card design and printing',
@@ -124,13 +124,13 @@ const ServiceDetail: React.FC = () => {
       <Navbar />
       <section className="pt-28 pb-20 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <Link to="/gallery" className="inline-flex items-center mb-6 text-swarachna-burgundy hover:text-swarachna-gold transition-colors">
+          <Link to="/#services" className="inline-flex items-center mb-6 text-swarachna-burgundy hover:text-swarachna-gold transition-colors">
             <ArrowLeft size={18} className="mr-2" />
-            Back to Gallery
+            Back to Services
           </Link>
           
           <h1 className="text-3xl md:text-4xl font-bold font-playfair mb-6">
-            <span className="gold-text">{service.title}</span>
+            <span className="gold-text font-extrabold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)', WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)' }}>{service.title}</span>
           </h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
@@ -168,6 +168,8 @@ const ServiceDetail: React.FC = () => {
                         top: contactSection.offsetTop,
                         behavior: 'smooth'
                       });
+                    } else {
+                      window.location.href = "/#contact";
                     }
                   }}
                 >

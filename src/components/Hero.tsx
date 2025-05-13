@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           <div className="w-full md:w-1/2 animate-fade-in-right">
             <div className="relative mb-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-playfair mb-2">
-                <span className="gold-text">Swarachna</span>
+                <span className="gold-text font-extrabold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)', WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)' }}>Swarachna</span>
               </h1>
               
               {/* Rotating text animation */}
@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
                     'Professional Services',
                     'Quality Products'
                   ]}
-                  mainClassName="text-2xl md:text-3xl lg:text-4xl text-swarachna-burgundy font-playfair overflow-hidden"
+                  mainClassName="text-2xl md:text-3xl lg:text-4xl text-swarachna-burgundy font-playfair overflow-hidden font-bold"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -73,8 +73,8 @@ const Hero: React.FC = () => {
 
           <div className="w-full md:w-1/2 flex justify-center animate-fade-in-left">
             <TiltedCard 
-              imageSrc="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
-              altText="Swarachna Logo" 
+              imageSrc="/lovable-uploads/b162c337-d7b6-4610-b841-e91c66358a60.png" 
+              altText="Swarachna Pillow" 
               captionText="Swarachna Creative Solutions" 
               containerHeight="400px" 
               containerWidth="400px" 

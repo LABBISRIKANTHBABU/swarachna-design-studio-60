@@ -10,7 +10,7 @@ const Services: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
-            <span className="gold-text">Our Services</span>
+            <span className="gold-text font-extrabold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)', WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)' }}>Our Services</span>
           </h2>
           <div className="w-24 h-1 bg-swarachna-burgundy mx-auto mt-4 mb-6"></div>
           <p className="text-gray-600 max-w-3xl mx-auto">
@@ -22,72 +22,37 @@ const Services: React.FC = () => {
           <ServiceCard
             title="Logo & Brand Design"
             description="Create a memorable visual identity with our professional logo design and complete branding elements."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M19.5 10c0 5.25-7.5 9.5-7.5 9.5s-7.5-4.25-7.5-9.5a7.5 7.5 0 0 1 15 0Z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-            }
+            image="/lovable-uploads/b796bec5-9e83-4ca6-85a7-90fbec2b6fd3.png"
             serviceId="logo-design"
           />
           <ServiceCard
             title="Marketing Materials"
             description="Engage your audience with eye-catching posters, flyers, and social media graphics designed to drive results."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                <path d="M9.5 9v6.5H11"></path>
-                <path d="M15 15.5h-3.5V12"></path>
-                <path d="M12.5 9h2.5"></path>
-              </svg>
-            }
+            image="/lovable-uploads/009d3efb-78c6-4820-a440-2124fc23f847.png"
             serviceId="marketing-materials"
           />
           <ServiceCard
             title="Packaging & Labels"
             description="Stand out on the shelf with custom packaging solutions and product labels designed for impact."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m7.5 4.27 9 5.15"></path>
-                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
-                <path d="m3.3 7 8.7 5 8.7-5"></path>
-                <path d="M12 22V12"></path>
-              </svg>
-            }
+            image="/lovable-uploads/9536d388-8daf-4c73-8e77-46f0c411a5f4.png"
             serviceId="packaging-labels"
           />
           <ServiceCard
             title="Apparel Printing"
             description="Custom printed t-shirts, hoodies, caps, and more for events, promotions, or personal use."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
-              </svg>
-            }
+            image="/lovable-uploads/cd54f1af-b065-43fa-8a3c-be71d282e7c5.png"
             serviceId="apparel-printing"
           />
           <ServiceCard
             title="Event & Display"
             description="Make an impact at events with professionally designed standees, banners, and display materials."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                <circle cx="9" cy="9" r="2"></circle>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-              </svg>
-            }
+            image="/lovable-uploads/07ba2fba-9c2c-43cb-b994-f268ed511b82.png"
             serviceId="event-display"
           />
           <ServiceCard
             title="Corporate Stationery"
             description="Create a professional impression with custom business cards, letterheads, and complete corporate stationery."
-            icon={
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                <path d="M3 9h18"></path>
-                <path d="M3 15h18"></path>
-              </svg>
-            }
+            image="/lovable-uploads/f3ce48ca-6d74-4d19-8d5d-0f0e76ab7078.png"
             serviceId="corporate-stationery"
           />
         </div>
@@ -100,22 +65,28 @@ const Services: React.FC = () => {
   );
 };
 
-const ServiceCard = ({ title, description, icon, serviceId }: { title: string; description: string; icon: React.ReactNode; serviceId: string }) => (
-  <div className="service-card group">
-    <div className="p-4 mb-4 bg-swarachna-gold/10 rounded-full w-16 h-16 flex items-center justify-center text-swarachna-burgundy group-hover:bg-swarachna-gold/20 transition-all">
-      {icon}
+const ServiceCard = ({ title, description, image, serviceId }: { title: string; description: string; image: string; serviceId: string }) => (
+  <div className="service-card group relative bg-white/80 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+    <div className="aspect-video w-full overflow-hidden">
+      <img 
+        src={image} 
+        alt={title}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+      />
     </div>
-    <h3 className="text-xl font-bold text-swarachna-burgundy mb-3 font-playfair">{title}</h3>
-    <p className="text-gray-600 mb-4">{description}</p>
-    <Link to={`/service/${serviceId}`}>
-      <Button 
-        variant="outline"
-        className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-lg text-sm font-medium hover:bg-swarachna-gold/10 transition-all flex items-center gap-2"
-      >
-        <Eye size={16} />
-        Explore
-      </Button>
-    </Link>
+    <div className="p-6">
+      <h3 className="text-xl font-bold text-swarachna-burgundy mb-3 font-playfair">{title}</h3>
+      <p className="text-gray-600 mb-4">{description}</p>
+      <Link to={`/service/${serviceId}`} className="inline-block">
+        <Button 
+          variant="outline"
+          className="bg-transparent border-2 border-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-lg text-sm font-medium hover:bg-swarachna-gold/10 transition-all flex items-center gap-2"
+        >
+          <Eye size={16} />
+          Explore
+        </Button>
+      </Link>
+    </div>
   </div>
 );
 
