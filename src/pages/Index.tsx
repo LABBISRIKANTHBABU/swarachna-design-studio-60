@@ -70,10 +70,10 @@ const Index: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-4">
-                <span className="gold-text font-extrabold" style={{
+                <span style={{
                 textShadow: '0 1px 1px rgba(0,0,0,0.05)',
                 WebkitTextStroke: '0.5px rgba(184, 134, 11, 0.5)'
-              }}>Have Your Own Design?</span>
+              }} className="gold-text font-extrabold">Have Your Own Design?</span>
               </h2>
               <p className="text-gray-700 mb-6 text-lg">
                 Upload your own design and we'll bring it to life. Whether you have a sketch, a digital file, or just an idea, our team will work with you to create the perfect print.
