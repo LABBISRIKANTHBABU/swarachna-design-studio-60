@@ -1,13 +1,30 @@
 
 import React from 'react';
-import FlowingMenu from './FlowingMenu';
+import Stepper from './stepper/Stepper';
+import './stepper/Stepper.css';
 
 const About: React.FC = () => {
-  const processItems = [
-    { link: '#', text: 'Consultation', image: 'https://picsum.photos/600/400?random=1' },
-    { link: '#', text: 'Design', image: 'https://picsum.photos/600/400?random=2' },
-    { link: '#', text: 'Refinement', image: 'https://picsum.photos/600/400?random=3' },
-    { link: '#', text: 'Production', image: 'https://picsum.photos/600/400?random=4' }
+  const stepContent = [
+    <div key="consultation" className="text-center px-4">
+      <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Consultation</h3>
+      <img src="https://picsum.photos/600/400?random=1" alt="Consultation" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <p className="text-gray-700">We start by understanding your vision, goals, and requirements through detailed consultations.</p>
+    </div>,
+    <div key="design" className="text-center px-4">
+      <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Design</h3>
+      <img src="https://picsum.photos/600/400?random=2" alt="Design" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <p className="text-gray-700">Our creative team develops initial concepts and designs based on your needs and preferences.</p>
+    </div>,
+    <div key="refinement" className="text-center px-4">
+      <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Refinement</h3>
+      <img src="https://picsum.photos/600/400?random=3" alt="Refinement" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <p className="text-gray-700">We refine the designs based on your feedback until we achieve the perfect result.</p>
+    </div>,
+    <div key="production" className="text-center px-4">
+      <h3 className="text-xl font-bold mb-3 text-swarachna-burgundy">Production</h3>
+      <img src="https://picsum.photos/600/400?random=4" alt="Production" className="w-full h-32 object-cover rounded-lg mb-3" />
+      <p className="text-gray-700">Once approved, we move to production with meticulous attention to quality and detail.</p>
+    </div>,
   ];
   
   return <section id="about" className="py-20 bg-white/50 relative overflow-hidden">
@@ -35,12 +52,12 @@ const About: React.FC = () => {
               Our Creative Process
             </h3>
             <p className="text-gray-700 mb-6">
-              At Swarachna, we believe that great designs come from understanding our clients' vision, values, and goals. Our creative process is collaborative and transparent, ensuring that we deliver results that exceed expectations.
+              At Swarachna, we believe that great designs come from understanding our clients' vision, values, and goals.
             </p>
           </div>
 
-          <div className="w-full md:w-1/2" style={{ height: '400px', position: 'relative' }}>
-            <FlowingMenu items={processItems} />
+          <div className="w-full md:w-1/2 bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-swarachna-gold/10">
+            <Stepper steps={stepContent} />
           </div>
         </div>
       </div>
