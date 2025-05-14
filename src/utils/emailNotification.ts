@@ -28,7 +28,7 @@ export async function sendOrderEmail(orderData: {
         template_id: "YOUR_EMAILJS_TEMPLATE_ID", // Replace with your EmailJS template ID
         user_id: "YOUR_EMAILJS_PUBLIC_KEY", // Replace with your EmailJS public key
         template_params: {
-          to_email: "your-email@example.com", // Replace with your email where you want to receive orders
+          to_email: "swarachnaa@gmail.com", // Updated recipient email
           from_name: orderData.customerInfo.name,
           from_email: orderData.customerInfo.email,
           order_id: orderData.orderId,
@@ -50,6 +50,48 @@ export async function sendOrderEmail(orderData: {
     return { 
       success: false, 
       error: "Failed to send email notification" 
+    };
+  }
+}
+
+export async function sendContactEmail(contactData: {
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+}) {
+  try {
+    // Send email using EmailJS or another service
+    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        service_id: "YOUR_EMAILJS_SERVICE_ID", // Replace with your EmailJS service ID
+        template_id: "YOUR_EMAILJS_TEMPLATE_ID", // Replace with your EmailJS template ID
+        user_id: "YOUR_EMAILJS_PUBLIC_KEY", // Replace with your EmailJS public key
+        template_params: {
+          to_email: "swarachnaa@gmail.com",
+          from_name: contactData.name,
+          from_email: contactData.email,
+          message: contactData.message,
+          phone: contactData.phone || "Not provided",
+          subject: "New Contact Form Submission",
+        },
+      }),
+    });
+
+    if (response.ok) {
+      return { success: true };
+    } else {
+      throw new Error("Failed to send contact email");
+    }
+  } catch (error) {
+    console.error("Error sending contact email:", error);
+    return { 
+      success: false, 
+      error: "Failed to send contact email" 
     };
   }
 }
