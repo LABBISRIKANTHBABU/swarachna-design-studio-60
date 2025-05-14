@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
-          element.scrollIntoElement({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: 'smooth' });
         } else {
           window.scrollTo(0, 0);
         }
