@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -38,18 +38,33 @@ type PhoneRegisterFormValues = z.infer<typeof phoneRegisterSchema>;
 type OtpFormValues = z.infer<typeof otpSchema>;
 
 const Register: React.FC = () => {
-  const { register } = useAuth();
+  const { register, loginWithGoogle, sendPhoneOtp, verifyPhoneOtp } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   
   const [registerMethod, setRegisterMethod] = useState<'email' | 'phone'>('email');
   const [showOtpInput, setShowOtpInput] = useState(false);
+  const [verificationId, setVerificationId] = useState<string>("");
   const [registrationData, setRegistrationData] = useState<{
     email?: string;
     phone?: string;
     name: string;
     password?: string;
   }>({ name: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Create a ref for the invisible reCAPTCHA
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Reset reCAPTCHA when component unmounts
+  useEffect(() => {
+    return () => {
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    };
+  }, []);
   
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -78,92 +93,85 @@ const Register: React.FC = () => {
   
   const onGoogleRegister = async () => {
     try {
-      // In a real app, this would initiate Google OAuth flow
-      // For demo, we'll simulate sending an OTP to the user's email
+      setIsSubmitting(true);
+      await loginWithGoogle();
       toast({
-        title: "OTP sent",
-        description: "A verification code has been sent to your Google email",
+        title: "Registration successful",
+        description: "Welcome to Swarachna!",
       });
-      setShowOtpInput(true);
-      setRegisterMethod('email');
-      setRegistrationData({
-        name: "Google User",
-        email: "google_user@gmail.com",
-      });
+      navigate('/');
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Registration failed",
         description: error instanceof Error ? error.message : "An error occurred during Google registration",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
-      // First step: request OTP
+      setIsSubmitting(true);
+      await register(data.email, data.password, data.name);
       toast({
-        title: "OTP sent",
-        description: `A verification code has been sent to ${data.email}`,
+        title: "Registration successful",
+        description: "Welcome to Swarachna!",
       });
-      setShowOtpInput(true);
-      setRegisterMethod('email');
-      setRegistrationData({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      });
+      navigate('/');
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Registration failed",
         description: error instanceof Error ? error.message : "An error occurred during registration",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   const onPhoneSubmit = async (data: PhoneRegisterFormValues) => {
     try {
-      // Simulate sending OTP to phone
-      toast({
-        title: "OTP sent",
-        description: `A verification code has been sent to ${data.phone}`,
-      });
+      setIsSubmitting(true);
+      // Send OTP to phone number
+      const verId = await sendPhoneOtp(data.phone);
+      setVerificationId(verId);
       setShowOtpInput(true);
       setRegisterMethod('phone');
       setRegistrationData({
         name: data.name,
         phone: data.phone,
       });
+      
+      toast({
+        title: "OTP sent",
+        description: `A verification code has been sent to ${data.phone}`,
+      });
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Registration failed",
         description: error instanceof Error ? error.message : "An error occurred during registration",
       });
+      
+      // Re-create reCAPTCHA container if needed
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   const onOtpSubmit = async (data: OtpFormValues) => {
     try {
-      // In a real app, verify OTP with backend
-      // For demo, we'll simulate successful verification
+      setIsSubmitting(true);
+      await verifyPhoneOtp(verificationId, data.otp);
       
-      if (registerMethod === 'email' && registrationData.email) {
-        await register(
-          registrationData.email,
-          registrationData.password || "password123",
-          registrationData.name
-        );
-      } else if (registerMethod === 'phone' && registrationData.phone) {
-        await register(
-          registrationData.phone + "@phone.user",
-          "password123",
-          registrationData.name,
-          registrationData.phone
-        );
-      }
-      
+      // For phone registration, we'd typically store additional user data in a database
+      // But in this demo we'll just show a success message
       toast({
         title: "Registration successful",
         description: "Welcome to Swarachna!",
@@ -175,6 +183,8 @@ const Register: React.FC = () => {
         title: "Verification failed",
         description: error instanceof Error ? error.message : "An error occurred during verification",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -188,6 +198,9 @@ const Register: React.FC = () => {
   
   return (
     <div className="pt-28 pb-20 min-h-screen flex items-center justify-center">
+      {/* Invisible reCAPTCHA container */}
+      <div id="recaptcha-container" ref={recaptchaContainerRef}></div>
+      
       <div className="container max-w-md">
         <Card>
           <CardHeader className="space-y-1">
@@ -215,6 +228,7 @@ const Register: React.FC = () => {
                     variant="outline" 
                     className="w-full flex items-center justify-center gap-2 h-12"
                     onClick={onGoogleRegister}
+                    disabled={isSubmitting}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" className="h-5 w-5">
                       <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
@@ -289,8 +303,9 @@ const Register: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Send OTP
+                        {isSubmitting ? "Registering..." : "Register"}
                       </Button>
                     </form>
                   </Form>
@@ -333,8 +348,9 @@ const Register: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Send OTP
+                        {isSubmitting ? "Sending OTP..." : "Send OTP"}
                       </Button>
                     </form>
                   </Form>
@@ -384,8 +400,9 @@ const Register: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Verify & Create Account
+                        {isSubmitting ? "Verifying..." : "Verify & Create Account"}
                       </Button>
                       <Button 
                         type="button" 

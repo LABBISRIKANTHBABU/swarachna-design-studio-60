@@ -11,6 +11,7 @@ import {
   signInWithPhoneNumber,
   UserCredential,
   PhoneAuthProvider,
+  signInWithCredential,
   User as FirebaseUser
 } from 'firebase/auth';
 import { auth } from '@/config/firebase';
@@ -77,6 +78,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const loginWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
+      // Force user to select account - prevent silent sign-in
+      provider.setCustomParameters({ prompt: 'select_account' });
       await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Google login error:", error);
@@ -86,19 +89,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const sendPhoneOtp = async (phoneNumber: string): Promise<string> => {
     try {
+      // Ensure phone number is in E.164 format
       const formattedPhone = phoneNumber.startsWith('+') ? phoneNumber : `+91${phoneNumber}`;
       
-      const recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible',
-        callback: () => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-        }
-      });
-
-      const confirmationResult = await signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifier);
+      // Create a reCAPTCHA verifier instance
+      if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible',
+          callback: () => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber
+            console.log("reCAPTCHA verified");
+          }
+        });
+      }
+      
+      const confirmationResult = await signInWithPhoneNumber(
+        auth, 
+        formattedPhone, 
+        window.recaptchaVerifier
+      );
+      
       return confirmationResult.verificationId;
     } catch (error) {
       console.error("Phone OTP error:", error);
+      // Reset reCAPTCHA so the user can try again
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
       throw error;
     }
   };
@@ -106,9 +124,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const verifyPhoneOtp = async (verificationId: string, otp: string) => {
     try {
       const credential = PhoneAuthProvider.credential(verificationId, otp);
-      // Fix: The signInWithPopup method requires at least one argument (the auth provider)
-      // Using signInWithCredential instead to authenticate with the phone credential
-      await signInWithPopup(auth, new GoogleAuthProvider(), credential);
+      // Use signInWithCredential to sign in with the phone credential
+      await signInWithCredential(auth, credential);
     } catch (error) {
       console.error("OTP verification error:", error);
       throw error;
@@ -159,3 +176,10 @@ export const useAuth = () => {
   }
   return context;
 };
+
+// Add RecaptchaVerifier to Window interface
+declare global {
+  interface Window {
+    recaptchaVerifier: any;
+  }
+}

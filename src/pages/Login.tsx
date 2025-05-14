@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Check, Mail, Phone } from "lucide-react";
+import { Check, Mail, Phone, X } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -41,6 +41,7 @@ const Login: React.FC = () => {
   const [verificationId, setVerificationId] = useState<string>("");
   const [verifiedEmail, setVerifiedEmail] = useState("");
   const [verifiedPhone, setVerifiedPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Create a ref for the invisible reCAPTCHA
   const recaptchaContainerRef = useRef<HTMLDivElement>(null);
@@ -66,9 +67,20 @@ const Login: React.FC = () => {
       otp: "",
     },
   });
+
+  // Reset reCAPTCHA when component unmounts
+  useEffect(() => {
+    return () => {
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    };
+  }, []);
   
   const onGoogleLogin = async () => {
     try {
+      setIsSubmitting(true);
       await loginWithGoogle();
       toast({
         title: "Login successful",
@@ -81,11 +93,14 @@ const Login: React.FC = () => {
         title: "Login failed",
         description: error instanceof Error ? error.message : "An error occurred during Google login",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
+      setIsSubmitting(true);
       await login(data.email, data.password);
       toast({
         title: "Login successful",
@@ -98,11 +113,14 @@ const Login: React.FC = () => {
         title: "Login failed",
         description: error instanceof Error ? error.message : "An error occurred during login",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   const onPhoneSubmit = async (data: PhoneFormValues) => {
     try {
+      setIsSubmitting(true);
       // Send OTP to phone number
       const verId = await sendPhoneOtp(data.phone);
       setVerificationId(verId);
@@ -120,11 +138,20 @@ const Login: React.FC = () => {
         title: "Login failed",
         description: error instanceof Error ? error.message : "An error occurred during login",
       });
+      
+      // Re-create reCAPTCHA container if needed
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   const onOtpSubmit = async (data: OtpFormValues) => {
     try {
+      setIsSubmitting(true);
       // Verify OTP
       await verifyPhoneOtp(verificationId, data.otp);
       
@@ -139,6 +166,8 @@ const Login: React.FC = () => {
         title: "Verification failed",
         description: error instanceof Error ? error.message : "An error occurred during verification",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -181,6 +210,7 @@ const Login: React.FC = () => {
                     variant="outline" 
                     className="w-full flex items-center justify-center gap-2 h-12"
                     onClick={onGoogleLogin}
+                    disabled={isSubmitting}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" className="h-5 w-5">
                       <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
@@ -229,8 +259,9 @@ const Login: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Sign In
+                        {isSubmitting ? "Signing in..." : "Sign In"}
                       </Button>
                     </form>
                   </Form>
@@ -260,8 +291,9 @@ const Login: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Send OTP
+                        {isSubmitting ? "Sending OTP..." : "Send OTP"}
                       </Button>
                     </form>
                   </Form>
@@ -311,8 +343,9 @@ const Login: React.FC = () => {
                       <Button 
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
+                        disabled={isSubmitting}
                       >
-                        Verify & Login
+                        {isSubmitting ? "Verifying..." : "Verify & Login"}
                       </Button>
                       <Button 
                         type="button" 

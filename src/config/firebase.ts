@@ -1,6 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getAnalytics, isSupported } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,5 +16,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Auth
 export const auth = getAuth(app);
+
+// Initialize Analytics conditionally
+const initAnalytics = async () => {
+  if (await isSupported()) {
+    return getAnalytics(app);
+  }
+  return null;
+};
+
+// Initialize Analytics
+initAnalytics();
+
 export default app;
