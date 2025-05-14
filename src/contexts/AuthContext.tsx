@@ -106,7 +106,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const verifyPhoneOtp = async (verificationId: string, otp: string) => {
     try {
       const credential = PhoneAuthProvider.credential(verificationId, otp);
-      await signInWithPopup(auth, new PhoneAuthProvider());
+      // Fix: The signInWithPopup method requires at least one argument (the auth provider)
+      // Using signInWithCredential instead to authenticate with the phone credential
+      await signInWithPopup(auth, new GoogleAuthProvider(), credential);
     } catch (error) {
       console.error("OTP verification error:", error);
       throw error;
