@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Check, Mail, Phone, User } from "lucide-react";
+import { Check, Mail, Phone } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -32,14 +32,18 @@ type PhoneFormValues = z.infer<typeof phoneSchema>;
 type OtpFormValues = z.infer<typeof otpSchema>;
 
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const { login, loginWithGoogle, sendPhoneOtp, verifyPhoneOtp } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   
   const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
   const [showOtpInput, setShowOtpInput] = useState(false);
+  const [verificationId, setVerificationId] = useState<string>("");
   const [verifiedEmail, setVerifiedEmail] = useState("");
   const [verifiedPhone, setVerifiedPhone] = useState("");
+  
+  // Create a ref for the invisible reCAPTCHA
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
   
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -65,15 +69,12 @@ const Login: React.FC = () => {
   
   const onGoogleLogin = async () => {
     try {
-      // In a real app, this would initiate Google OAuth flow
-      // For demo, we'll simulate sending an OTP to the user's email
+      await loginWithGoogle();
       toast({
-        title: "OTP sent",
-        description: "A verification code has been sent to your Google email",
+        title: "Login successful",
+        description: "Welcome back to Swarachna!",
       });
-      setShowOtpInput(true);
-      setLoginMethod('email');
-      setVerifiedEmail("google_user@gmail.com");
+      navigate('/');
     } catch (error) {
       toast({
         variant: "destructive",
@@ -85,23 +86,12 @@ const Login: React.FC = () => {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      if (!showOtpInput) {
-        // First step: request OTP
-        toast({
-          title: "OTP sent",
-          description: `A verification code has been sent to ${data.email}`,
-        });
-        setShowOtpInput(true);
-        setVerifiedEmail(data.email);
-      } else {
-        // Second step would actually verify OTP in a real app
-        await login(verifiedEmail, data.password);
-        toast({
-          title: "Login successful",
-          description: "Welcome back to Swarachna!",
-        });
-        navigate('/');
-      }
+      await login(data.email, data.password);
+      toast({
+        title: "Login successful",
+        description: "Welcome back to Swarachna!",
+      });
+      navigate('/');
     } catch (error) {
       toast({
         variant: "destructive",
@@ -113,14 +103,17 @@ const Login: React.FC = () => {
   
   const onPhoneSubmit = async (data: PhoneFormValues) => {
     try {
-      // Simulate sending OTP to phone
+      // Send OTP to phone number
+      const verId = await sendPhoneOtp(data.phone);
+      setVerificationId(verId);
+      setShowOtpInput(true);
+      setLoginMethod('phone');
+      setVerifiedPhone(data.phone);
+      
       toast({
         title: "OTP sent",
         description: `A verification code has been sent to ${data.phone}`,
       });
-      setShowOtpInput(true);
-      setLoginMethod('phone');
-      setVerifiedPhone(data.phone);
     } catch (error) {
       toast({
         variant: "destructive",
@@ -132,14 +125,8 @@ const Login: React.FC = () => {
   
   const onOtpSubmit = async (data: OtpFormValues) => {
     try {
-      // In a real app, verify OTP with backend
-      // For demo, we'll simulate successful verification
-      
-      if (loginMethod === 'email') {
-        await login(verifiedEmail, "password");
-      } else {
-        await login(verifiedPhone + "@phone.user", "password");
-      }
+      // Verify OTP
+      await verifyPhoneOtp(verificationId, data.otp);
       
       toast({
         title: "Verification successful",
@@ -164,6 +151,9 @@ const Login: React.FC = () => {
   
   return (
     <div className="pt-28 pb-20 min-h-screen flex items-center justify-center">
+      {/* Invisible reCAPTCHA container */}
+      <div id="recaptcha-container" ref={recaptchaContainerRef}></div>
+      
       <div className="container max-w-md">
         <Card>
           <CardHeader className="space-y-1">
@@ -240,7 +230,7 @@ const Login: React.FC = () => {
                         type="submit" 
                         className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white"
                       >
-                        Send OTP
+                        Sign In
                       </Button>
                     </form>
                   </Form>
