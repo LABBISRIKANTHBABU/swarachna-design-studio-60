@@ -1,14 +1,13 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Phone, Mail, MapPin } from 'lucide-react';
-
 const Contact: React.FC = () => {
-  const { toast } = useToast();
-  
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,19 +15,19 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
     try {
       // Send email using the emailNotification utility
       const emailData = {
@@ -44,12 +43,15 @@ const Contact: React.FC = () => {
       const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          service_id: "default_service", // Replace with your EmailJS service ID
-          template_id: "contact_form", // Replace with your EmailJS template ID
-          user_id: "YOUR_EMAILJS_PUBLIC_KEY", // Replace with your EmailJS public key
+          service_id: "default_service",
+          // Replace with your EmailJS service ID
+          template_id: "contact_form",
+          // Replace with your EmailJS template ID
+          user_id: "YOUR_EMAILJS_PUBLIC_KEY",
+          // Replace with your EmailJS public key
           template_params: {
             to_email: emailData.to,
             from_name: emailData.from_name,
@@ -57,14 +59,14 @@ const Contact: React.FC = () => {
             message: emailData.message,
             phone: emailData.phone,
             subject: emailData.subject
-          },
-        }),
+          }
+        })
       });
 
       // Display success message
       toast({
         title: "Message sent!",
-        description: "We've received your message and will contact you soon.",
+        description: "We've received your message and will contact you soon."
       });
 
       // Reset form
@@ -85,9 +87,7 @@ const Contact: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <section id="contact" className="py-20 bg-white relative overflow-hidden">
+  return <section id="contact" className="py-20 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold font-playfair mb-2">
@@ -132,11 +132,7 @@ const Contact: React.FC = () => {
                 <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your project..." className="w-full border-swarachna-gold/20 focus:border-swarachna-gold" rows={5} required />
               </div>
               
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-5 rounded-lg text-lg font-medium transition-all"
-              >
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-swarachna-burgundy hover:bg-swarachna-burgundy/90 text-white py-5 rounded-lg text-lg font-medium transition-all">
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
@@ -153,23 +149,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
             
-            <div className="mt-12 p-6 bg-swarachna-cream/30 rounded-xl border border-swarachna-gold/10">
-              <h4 className="text-xl font-semibold text-swarachna-burgundy mb-4 font-playfair">Business Hours</h4>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-700 font-medium">Monday - Friday</span>
-                  <span className="text-gray-600">9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700 font-medium">Saturday</span>
-                  <span className="text-gray-600">10:00 AM - 4:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-700 font-medium">Sunday</span>
-                  <span className="text-gray-600">Closed</span>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -177,10 +157,8 @@ const Contact: React.FC = () => {
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-40 h-40 bg-swarachna-gold opacity-5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-0 w-40 h-40 bg-swarachna-burgundy opacity-5 rounded-full blur-3xl"></div>
-    </section>
-  );
+    </section>;
 };
-
 const ContactInfo = ({
   icon,
   title,
@@ -189,8 +167,7 @@ const ContactInfo = ({
   icon: React.ReactNode;
   title: string;
   content: string;
-}) => (
-  <div className="flex items-start">
+}) => <div className="flex items-start">
     <div className="p-3 bg-swarachna-gold/10 rounded-full mr-4 text-swarachna-burgundy">
       {icon}
     </div>
@@ -198,7 +175,5 @@ const ContactInfo = ({
       <h4 className="text-lg font-semibold text-swarachna-burgundy">{title}</h4>
       <p className="text-gray-600">{content}</p>
     </div>
-  </div>
-);
-
+  </div>;
 export default Contact;

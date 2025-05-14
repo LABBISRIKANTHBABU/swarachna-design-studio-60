@@ -1,18 +1,11 @@
-
 import React from 'react';
-
 const Footer: React.FC = () => {
-  return (
-    <footer className="bg-swarachna-burgundy text-white py-16 relative overflow-hidden">
+  return <footer className="bg-swarachna-burgundy text-white py-16 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           <div className="space-y-6">
             <div className="flex items-center">
-              <img 
-                src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" 
-                alt="Swarachna Logo" 
-                className="h-12 w-auto mr-3"
-              />
+              <img src="/lovable-uploads/8d0b7b25-ae0d-4ddc-a1de-09ced7e1eaa8.png" alt="Swarachna Logo" className="h-12 w-auto mr-3" />
               <span className="text-2xl font-bold text-white font-playfair">
                 Swarachna
               </span>
@@ -70,15 +63,8 @@ const Footer: React.FC = () => {
             </p>
             <form className="space-y-3">
               <div className="flex">
-                <input 
-                  type="email"
-                  placeholder="Your email address"
-                  className="bg-white/10 text-white px-4 py-2 rounded-l-lg flex-grow focus:outline-none focus:ring-1 focus:ring-swarachna-gold"
-                />
-                <button
-                  type="submit"
-                  className="bg-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-r-lg font-medium hover:bg-swarachna-gold/90 transition-colors"
-                >
+                <input type="email" placeholder="Your email address" className="bg-white/10 text-white px-4 py-2 rounded-l-lg flex-grow focus:outline-none focus:ring-1 focus:ring-swarachna-gold" />
+                <button type="submit" className="bg-swarachna-gold text-swarachna-burgundy px-4 py-2 rounded-r-lg font-medium hover:bg-swarachna-gold/90 transition-colors">
                   Subscribe
                 </button>
               </div>
@@ -97,28 +83,22 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
-const SocialIcon = ({ children, href }: { children: React.ReactNode, href?: string }) => (
-  <a 
-    href={href || "#"} 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-swarachna-gold hover:text-swarachna-burgundy transition-colors"
-  >
+const SocialIcon = ({
+  children,
+  href
+}: {
+  children: React.ReactNode;
+  href?: string;
+}) => <a href={href || "#"} target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-swarachna-gold hover:text-swarachna-burgundy transition-colors">
     {children}
-  </a>
-);
-
-const FooterBottomLink = ({ children }: { children: React.ReactNode }) => (
-  <a 
-    href="#" 
-    className="text-swarachna-cream/60 text-sm hover:text-swarachna-gold transition-colors"
-  >
+  </a>;
+const FooterBottomLink = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => <a href="#" className="text-swarachna-cream/60 text-sm hover:text-swarachna-gold transition-colors">
     {children}
-  </a>
-);
-
+  </a>;
 export default Footer;
