@@ -13,6 +13,8 @@ import UploadDesign from "./pages/UploadDesign";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ChangePassword from "./pages/ChangePassword";
 import Cart from "./pages/Cart";
 
 // Create a client
@@ -33,6 +35,8 @@ const App = () => {
               <Route path="/upload-design" element={<Layout><UploadDesign /></Layout>} />
               <Route path="/login" element={<Layout><Login /></Layout>} />
               <Route path="/register" element={<Layout><Register /></Layout>} />
+              <Route path="/forgot-password" element={<Layout><ForgotPassword /></Layout>} />
+              <Route path="/change-password" element={<Layout><ChangePassword /></Layout>} />
               <Route path="/cart" element={<Layout><Cart /></Layout>} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<Layout><NotFound /></Layout>} />

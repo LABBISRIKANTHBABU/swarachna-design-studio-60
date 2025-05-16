@@ -10,7 +10,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { Mail } from "lucide-react";
+import { Mail, Eye, EyeOff } from "lucide-react";
 
 const registerSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -30,6 +30,8 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -140,7 +142,10 @@ const Register: React.FC = () => {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="mail@example.com" {...field} />
+                          <div className="relative">
+                            <Input placeholder="mail@example.com" {...field} />
+                            <Mail className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -153,7 +158,23 @@ const Register: React.FC = () => {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input type="password" placeholder="••••••" {...field} />
+                          <div className="relative">
+                            <Input 
+                              type={showPassword ? "text" : "password"} 
+                              placeholder="••••••" 
+                              {...field} 
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? 
+                                <EyeOff className="h-5 w-5" /> : 
+                                <Eye className="h-5 w-5" />
+                              }
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -166,7 +187,23 @@ const Register: React.FC = () => {
                       <FormItem>
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
-                          <Input type="password" placeholder="••••••" {...field} />
+                          <div className="relative">
+                            <Input 
+                              type={showConfirmPassword ? "text" : "password"} 
+                              placeholder="••••••" 
+                              {...field} 
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                              {showConfirmPassword ? 
+                                <EyeOff className="h-5 w-5" /> : 
+                                <Eye className="h-5 w-5" />
+                              }
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>

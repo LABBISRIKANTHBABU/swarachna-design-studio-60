@@ -10,7 +10,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { Mail } from "lucide-react";
+import { Mail, Eye, EyeOff } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -25,6 +25,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -120,7 +121,10 @@ const Login: React.FC = () => {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="mail@example.com" {...field} />
+                          <div className="relative">
+                            <Input placeholder="mail@example.com" {...field} />
+                            <Mail className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -131,9 +135,33 @@ const Login: React.FC = () => {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <div className="flex justify-between items-center">
+                          <FormLabel>Password</FormLabel>
+                          <Link 
+                            to="/forgot-password" 
+                            className="text-xs text-swarachna-burgundy hover:underline"
+                          >
+                            Forgot Password?
+                          </Link>
+                        </div>
                         <FormControl>
-                          <Input type="password" placeholder="••••••" {...field} />
+                          <div className="relative">
+                            <Input 
+                              type={showPassword ? "text" : "password"} 
+                              placeholder="••••••" 
+                              {...field} 
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? 
+                                <EyeOff className="h-5 w-5" /> : 
+                                <Eye className="h-5 w-5" />
+                              }
+                            </button>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>

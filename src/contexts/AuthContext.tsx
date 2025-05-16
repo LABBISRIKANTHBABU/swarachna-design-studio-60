@@ -12,7 +12,11 @@ import {
   UserCredential,
   PhoneAuthProvider,
   signInWithCredential,
-  User as FirebaseUser
+  User as FirebaseUser,
+  sendPasswordResetEmail,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential
 } from 'firebase/auth';
 import { auth } from '@/config/firebase';
 
@@ -34,6 +38,8 @@ type AuthContextType = {
   verifyPhoneOtp: (verificationId: string, otp: string) => Promise<void>;
   register: (email: string, password: string, name?: string, phone?: string) => Promise<void>;
   logout: () => void;
+  resetPassword: (email: string) => Promise<void>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
 };
 
 // Create auth context
@@ -151,6 +157,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.error("Logout error:", error);
       });
   };
+
+  // New password reset function
+  const resetPassword = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      console.error("Password reset error:", error);
+      throw error;
+    }
+  };
+
+  // New change password function
+  const changePassword = async (currentPassword: string, newPassword: string) => {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser || !currentUser.email) {
+        throw new Error("No authenticated user found");
+      }
+      
+      // Re-authenticate the user first
+      const credential = EmailAuthProvider.credential(
+        currentUser.email,
+        currentPassword
+      );
+      
+      await reauthenticateWithCredential(currentUser, credential);
+      
+      // Then update the password
+      await updatePassword(currentUser, newPassword);
+    } catch (error) {
+      console.error("Change password error:", error);
+      throw error;
+    }
+  };
   
   return (
     <AuthContext.Provider value={{ 
@@ -161,7 +201,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       sendPhoneOtp,
       verifyPhoneOtp,
       register, 
-      logout 
+      logout,
+      resetPassword,
+      changePassword
     }}>
       {children}
     </AuthContext.Provider>
