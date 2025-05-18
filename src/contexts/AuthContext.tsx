@@ -1,10 +1,29 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  UserCredential,
+  PhoneAuthProvider,
+  signInWithCredential,
+  User as FirebaseUser,
+  sendPasswordResetEmail,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential
+} from 'firebase/auth';
+import { auth } from '@/config/firebase';
 
 // Define user type
 type User = {
   id: string;
-  email: string;
+  email: string | null;
   name?: string;
   phone?: string;
 };
@@ -14,8 +33,13 @@ type AuthContextType = {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: () => Promise<void>;
+  sendPhoneOtp: (phoneNumber: string) => Promise<string>;
+  verifyPhoneOtp: (verificationId: string, otp: string) => Promise<void>;
   register: (email: string, password: string, name?: string, phone?: string) => Promise<void>;
   logout: () => void;
+  resetPassword: (email: string) => Promise<void>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
 };
 
 // Create auth context
@@ -27,62 +51,160 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if user is stored in localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
-    }
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        const userData: User = {
+          id: firebaseUser.uid,
+          email: firebaseUser.email,
+          name: firebaseUser.displayName || undefined,
+          phone: firebaseUser.phoneNumber || undefined,
+        };
+        setUser(userData);
+        setIsAuthenticated(true);
+        localStorage.setItem('user', JSON.stringify(userData));
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+        localStorage.removeItem('user');
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const login = async (email: string, password: string) => {
-    // Mock authentication - would connect to a backend in a real app
-    // For demo purposes, just create a user if email contains '@'
-    if (!email.includes('@')) {
-      throw new Error('Invalid email format');
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error("Login error:", error);
+      throw error;
     }
-    
-    const newUser = {
-      id: `user_${Date.now()}`,
-      email: email,
-    };
-    
-    setUser(newUser);
-    setIsAuthenticated(true);
-    localStorage.setItem('user', JSON.stringify(newUser));
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      // Force user to select account - prevent silent sign-in
+      provider.setCustomParameters({ prompt: 'select_account' });
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Google login error:", error);
+      throw error;
+    }
+  };
+
+  const sendPhoneOtp = async (phoneNumber: string): Promise<string> => {
+    try {
+      // Ensure phone number is in E.164 format
+      const formattedPhone = phoneNumber.startsWith('+') ? phoneNumber : `+91${phoneNumber}`;
+      
+      // Create a reCAPTCHA verifier instance
+      if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible',
+          callback: () => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber
+            console.log("reCAPTCHA verified");
+          }
+        });
+      }
+      
+      const confirmationResult = await signInWithPhoneNumber(
+        auth, 
+        formattedPhone, 
+        window.recaptchaVerifier
+      );
+      
+      return confirmationResult.verificationId;
+    } catch (error) {
+      console.error("Phone OTP error:", error);
+      // Reset reCAPTCHA so the user can try again
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.clear();
+        window.recaptchaVerifier = null;
+      }
+      throw error;
+    }
+  };
+
+  const verifyPhoneOtp = async (verificationId: string, otp: string) => {
+    try {
+      const credential = PhoneAuthProvider.credential(verificationId, otp);
+      // Use signInWithCredential to sign in with the phone credential
+      await signInWithCredential(auth, credential);
+    } catch (error) {
+      console.error("OTP verification error:", error);
+      throw error;
+    }
   };
   
   const register = async (email: string, password: string, name?: string, phone?: string) => {
-    // Mock registration - would connect to a backend in a real app
-    if (!email.includes('@')) {
-      throw new Error('Invalid email format');
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      // Additional user data like name and phone would be stored in a database in a real app
+    } catch (error) {
+      console.error("Registration error:", error);
+      throw error;
     }
-    
-    if (password.length < 6) {
-      throw new Error('Password must be at least 6 characters');
-    }
-    
-    const newUser = {
-      id: `user_${Date.now()}`,
-      email: email,
-      name: name,
-      phone: phone,
-    };
-    
-    setUser(newUser);
-    setIsAuthenticated(true);
-    localStorage.setItem('user', JSON.stringify(newUser));
   };
   
   const logout = () => {
-    setUser(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem('user');
-    localStorage.removeItem('cart');
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem('cart');
+      })
+      .catch(error => {
+        console.error("Logout error:", error);
+      });
+  };
+
+  // New password reset function
+  const resetPassword = async (email: string) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      console.error("Password reset error:", error);
+      throw error;
+    }
+  };
+
+  // New change password function
+  const changePassword = async (currentPassword: string, newPassword: string) => {
+    try {
+      const currentUser = auth.currentUser;
+      if (!currentUser || !currentUser.email) {
+        throw new Error("No authenticated user found");
+      }
+      
+      // Re-authenticate the user first
+      const credential = EmailAuthProvider.credential(
+        currentUser.email,
+        currentPassword
+      );
+      
+      await reauthenticateWithCredential(currentUser, credential);
+      
+      // Then update the password
+      await updatePassword(currentUser, newPassword);
+    } catch (error) {
+      console.error("Change password error:", error);
+      throw error;
+    }
   };
   
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, register, logout }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      isAuthenticated, 
+      login, 
+      loginWithGoogle,
+      sendPhoneOtp,
+      verifyPhoneOtp,
+      register, 
+      logout,
+      resetPassword,
+      changePassword
+    }}>
       {children}
     </AuthContext.Provider>
   );
@@ -96,3 +218,10 @@ export const useAuth = () => {
   }
   return context;
 };
+
+// Add RecaptchaVerifier to Window interface
+declare global {
+  interface Window {
+    recaptchaVerifier: any;
+  }
+}
