@@ -31,7 +31,7 @@ const App = () => {
   // Initialize ChatBot when the app loads
   useEffect(() => {
     // Ensure ChatBot is properly initialized after component mounts
-    if (window.OpenWidget) {
+    if (typeof window.OpenWidget !== 'undefined') {
       console.info("ChatBot initialized");
     }
   }, []);
