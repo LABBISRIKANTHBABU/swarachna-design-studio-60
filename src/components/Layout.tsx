@@ -38,14 +38,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="min-h-screen relative">
           {/* Full-page waves background */}
           <Waves
-            lineColor="rgba(160, 128, 192, 0.2)"
-            backgroundColor="rgba(245, 240, 235, 0.2)"
+            lineColor="rgba(188, 108, 17, 0.3)"
+            backgroundColor="rgba(156, 132, 77, 0.22)"
             waveSpeedX={0.015}
             waveSpeedY={0.008}
             waveAmpX={30}
             waveAmpY={15}
             friction={0.92}
-            tension={0.008}
+            tension={0.008} 
             maxCursorMove={100}
             xGap={15}
             yGap={40}
