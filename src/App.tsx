@@ -20,6 +20,13 @@ import Cart from "./pages/Cart";
 // Create a client
 const queryClient = new QueryClient();
 
+// Add type declaration for OpenWidget
+declare global {
+  interface Window {
+    OpenWidget?: any;
+  }
+}
+
 const App = () => {
   // Initialize ChatBot when the app loads
   useEffect(() => {
