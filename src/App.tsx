@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,6 +21,14 @@ import Cart from "./pages/Cart";
 const queryClient = new QueryClient();
 
 const App = () => {
+  // Initialize ChatBot when the app loads
+  useEffect(() => {
+    // Ensure ChatBot is properly initialized after component mounts
+    if (window.OpenWidget) {
+      console.info("ChatBot initialized");
+    }
+  }, []);
+
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>

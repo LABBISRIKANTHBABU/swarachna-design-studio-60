@@ -166,6 +166,13 @@
     margin-top: 0;
   }
 
+  /* Custom styles for ChatBot widget */
+  #openwidget-container {
+    left: 20px !important;
+    right: auto !important;
+    z-index: 99 !important;
+  }
+
   /* for mobile */
   @media screen and (max-width: 767px) {
     .whatsapp-icon {
@@ -177,6 +184,10 @@
       bottom: 20px;
       right: 10px;
       font-size: 22px;
+    }
+    
+    #openwidget-container {
+      left: 10px !important;
     }
   }
 }
