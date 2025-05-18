@@ -165,13 +165,20 @@
   .whatsapp-icon {
     margin-top: 0;
   }
+#openwidget-container {
+  left: 20px !important;
+  right: auto !important;
+  z-index: 99 !important;
+}
 
-  /* Custom styles for ChatBot widget */
+/* for mobile */
+@media screen and (max-width: 767px) {
   #openwidget-container {
-    left: 20px !important;
+    left: 10px !important;
     right: auto !important;
-    z-index: 99 !important;
   }
+}
+  
 
   /* for mobile */
   @media screen and (max-width: 767px) {
@@ -187,7 +194,7 @@
     }
     
     #openwidget-container {
-      left: 10px !important;
+      right: 10px !important;
     }
   }
 }
