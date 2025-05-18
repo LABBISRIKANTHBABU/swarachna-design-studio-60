@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,29 +13,12 @@ import UploadDesign from "./pages/UploadDesign";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
-import ChangePassword from "./pages/ChangePassword";
 import Cart from "./pages/Cart";
 
 // Create a client
 const queryClient = new QueryClient();
 
-// Add type declaration for OpenWidget
-declare global {
-  interface Window {
-    OpenWidget?: any;
-  }
-}
-
 const App = () => {
-  // Initialize ChatBot when the app loads
-  useEffect(() => {
-    // Ensure ChatBot is properly initialized after component mounts
-    if (typeof window.OpenWidget !== 'undefined') {
-      console.info("ChatBot initialized");
-    }
-  }, []);
-
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
@@ -50,8 +33,6 @@ const App = () => {
               <Route path="/upload-design" element={<Layout><UploadDesign /></Layout>} />
               <Route path="/login" element={<Layout><Login /></Layout>} />
               <Route path="/register" element={<Layout><Register /></Layout>} />
-              <Route path="/forgot-password" element={<Layout><ForgotPassword /></Layout>} />
-              <Route path="/change-password" element={<Layout><ChangePassword /></Layout>} />
               <Route path="/cart" element={<Layout><Cart /></Layout>} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<Layout><NotFound /></Layout>} />
